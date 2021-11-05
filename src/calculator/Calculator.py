@@ -1,9 +1,9 @@
-from calculator.Addition import addition
-from calculator.Subtraction import subtraction
-from calculator.Multiplication import multiplication
-from calculator.Division import division
-from calculator.Square import square
-from calculator.Squareroot import sqrt
+from src.calculator.Addition import addition
+from src.calculator.Subtraction import subtraction
+from src.calculator.Multiplication import multiplication
+from src.calculator.Division import division
+from src.calculator.Square import square
+from src.calculator.Squareroot import sqrt
 
 class Calculator: #defines the object
     result = 0    #set value for result

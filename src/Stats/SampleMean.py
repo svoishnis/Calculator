@@ -1,6 +1,6 @@
 import random
-from calculator.Addition import addition
-from calculator. Division import division
+from src.calculator.Addition import addition
+from src.calculator.Division import division
 
 def sample_mean(data, sample_size):
     try:

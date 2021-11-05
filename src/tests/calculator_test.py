@@ -1,8 +1,8 @@
 """Testing the Calculator"""
 
 import unittest
-from calculator.Calculator import Calculator
-from CsvReader.csvReader import CsvReader
+from src.calculator.Calculator import Calculator
+from src.CsvReader.csvReader import CsvReader
 
 class UnitTest(unittest.TestCase): #Test Driven Development - testing code works
     def setUp(self) -> None:
