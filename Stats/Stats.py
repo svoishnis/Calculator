@@ -8,7 +8,7 @@ from Stats.PopVariance import population_variance
 from Stats.StandardDeviation import std
 
 class Stats(Calculator):
-    data []
+    data = []
 
     def init(self, filepath):
         self.data = CsvReader(filepath)
