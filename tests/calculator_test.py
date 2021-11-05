@@ -1,18 +1,30 @@
 """Testing the Calculator"""
-from calculator.calculator import Calculator
+from calculator.main import Calculator
+
+def test_calculator_result():
+    """testing calculator result is 0"""
+    calc = Calculator()
+    assert calc.result == 0
 
 def test_calculator_add():
     """Testing the Add function of the calculator"""
-    assert Calculator.add_number(1,2) == 3
+    calc = Calculator()
+    calc.add_number(4)
+    assert calc.result == 4
 
 def test_calculator_subtract():
-
-    assert Calculator.subtract_number(1,2) == -1
+    calc = Calculator()
+    calc.subtract_number(4)
+    assert calc.result == 4
 
 def test_calculator_multiply():
     """ tests multiplication of two numbers"""
-    assert Calculator.multiple_numbers(1,2) == 2
+    calc = Calculator()
+    calc.multiple_numbers(4)
+    assert calc.result == 4
 
 def test_calculator_divide():
     """ tests division of two numbers"""
-    assert Calculator.divide_numbers(1,2) == 0.5
+    calc = Calculator()
+    calc.divide_numbers(4)
+    assert calc.result == 4

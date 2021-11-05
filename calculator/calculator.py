@@ -1,25 +1,13 @@
-""" This is the increment function"""
-class Calculator:
-    """ This is the Calculator class"""
+from calculator.Addition import addition
+from calculator.Subtraction import subtraction
+from calculator.Multiplication import multiplication
+from calculator.Division import division
+from calculator.Square import square
+from calculator.Squareroot import sqrt
 
-history = []
+class Calculator: #defines the object
+    result = 0    #set value for result
 
-@staticmethod
-def add_number(value_a, value_b):
-        """ adds number to result"""
-        return value_a + value_b
-
-@staticmethod
-def subtract_number(value_a, value_b):
-        """ subtract number from result"""
-        return value_a - value_b
-
-@staticmethod
-def multiply_numbers(value_a, value_b):
-        """ multiply two numbers and store the result"""
-        return value_a * value_b
-@staticmethod
-def divide_numbers(value_a, value_b):
-        """ divide two numbers """
-        return value_a / value_b
-
+    def __init__(self): #Object Oriented Programming
+        pass
+    def __add__(self, a, b):
