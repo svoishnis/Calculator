@@ -23,5 +23,5 @@ class UnitTest(unittest.TestCase): #Test Driven Development - testing code works
             self.assertEqual(self.calculator.add(row['Value 1'], row['Value 2']),int(row['Result']))
         print("Addition Test Complete")
 
-  if __name__ == '__main__':
-        unittest.main()
+if __name__ == '__main__':
+    unittest.main()
