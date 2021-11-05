@@ -1,9 +1,9 @@
 import csv
 from pprint import pprint
-from FileUtilities.AbsolutePath import absolute_path
+from FileUtilities.Absolutepath import absolute_path
 
 def class_factory(class_name, dictionary):
-    return(class_name, (object,), dictionary)
+    return type(class_name, (object,), dictionary)
 
 class CsvReader:
     data = []
