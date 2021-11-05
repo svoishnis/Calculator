@@ -18,7 +18,10 @@ class UnitTest(unittest.TestCase): #Test Driven Development - testing code works
 
     def test_calculator_addition(self):
         print("Addition Test:")
-        test_data_addition = CsvReader('tests/Data/UnitTest_Addition.csv')
+        test_data_addition = CsvReader('tests/UnitTestData/UnitTest_Addition.csv')
         for row in test_data_addition:
             self.assertEqual(self.calculator.add(row['Value 1'], row['Value 2']),int(row['Result']))
             print("Addition Test Complete")
+
+  if __name__ == '__main__':
+        unittest.main()
