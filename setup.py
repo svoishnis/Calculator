@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-setup(name='calculator',
+setup(name='Calculator',
       version = '0.0.1',
       description = "Calculator Assignment for CS601",
       author = "Sarah Voishnis",

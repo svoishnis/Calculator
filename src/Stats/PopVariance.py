@@ -1,8 +1,8 @@
 from src.Stats.Mean import mean
-from src.calculator.Addition import addition
-from src.calculator.Division import division
-from src.calculator.Square import square
-from src.calculator.Subtraction import subtraction
+from src.Calculator.Addition import addition
+from src.Calculator.Division import division
+from src.Calculator.Square import square
+from src.Calculator.Subtraction import subtraction
 
 def population_variance(data):
     try:

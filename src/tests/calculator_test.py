@@ -1,7 +1,7 @@
 """Testing the Calculator"""
 
 import unittest
-from src.calculator.Calculator import Calculator
+from src.Calculator.Calculator import Calculator
 from src.CsvReader.csvReader import CsvReader
 
 class UnitTest(unittest.TestCase): #Test Driven Development - testing code works

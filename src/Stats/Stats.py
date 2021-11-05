@@ -1,4 +1,4 @@
-from src.calculator.Calculator import Calculator
+from src.Calculator.Calculator import Calculator
 from src.CsvReader.csvReader import CsvReader
 from src.Stats.Mean import mean
 from src.Stats.SampleMean import sample_mean
