@@ -1,8 +1,8 @@
 import csv
 from pprint import pprint
-from calc2.FileUtilities.AbsolutePath import absolute_path
+from FileUtilities.AbsolutePath import absolute_path
 
-def class_factory(class_name, directory):
+def class_factory(class_name, dictionary):
     return(class_name, (object,), dictionary)
 
 class CsvReader:
@@ -15,8 +15,9 @@ class CsvReader:
                 self.data.append(row)
                 print(row)
         pass
-            def return_data_as_objects(self, class_name):
-                object = []
-                for row in self.data:
-                    objects.append(class_factory(class_name, row))
-                    return objects
+
+    def return_data_as_objects(self, class_name):
+        object = []
+        for row in self.data:
+            objects.append(class_factory(class_name, row))
+        return objects
