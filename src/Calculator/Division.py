@@ -8,7 +8,5 @@ def division(a,b):
         else:
             c = float(b) / float(a)
             return c
-        #except ZeroDivsionError
-        #   print("Error: Cannot divide by zero")
     except ValueError:
         print("Error: Incorrect Values were provided")

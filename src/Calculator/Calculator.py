@@ -26,10 +26,10 @@ class Calculator: #defines the object
         self.result = division(a, b)
         return self.result
 
-    def square(self, a, b):
-        self.result = square(a, b)
+    def square(self, a):
+        self.result = square(a)
         return self.result
 
-    def sqrt(self, a, b):
-        self.result = sqrt(a, b)
+    def sqrt(self, a):
+        self.result = sqrt(a)
         return self.result
