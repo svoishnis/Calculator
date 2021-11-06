@@ -4,6 +4,7 @@ from src.Calculator.Division import division
 from src.Calculator.Square import square
 from src.Calculator.Subtraction import subtraction
 
+
 def population_variance(data):
     try:
         length = len(data)

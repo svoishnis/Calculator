@@ -2,6 +2,7 @@ import random
 from src.Calculator.Addition import addition
 from src.Calculator.Division import division
 
+
 def sample_mean(data, sample_size):
     try:
         total = 0

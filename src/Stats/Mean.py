@@ -1,6 +1,7 @@
 from src.Calculator.Addition import addition
 from src.Calculator.Division import division
 
+
 def mean(data):
     try:
         total = 0

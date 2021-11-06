@@ -13,7 +13,6 @@ class MyTestCase(unittest.TestCase):
         self.random_lst = get_random_int_list()
         self.test_lst = [1, 2, 3]
 
-
     def test_instantiate_calculator(self):
         self.assertIsInstance(self.statistics, Stats)
         print("Completed Stats Calc Instantiate Test")
@@ -26,9 +25,9 @@ class MyTestCase(unittest.TestCase):
         print("Beginning Mean Test")
         mean = self.statistics.mean(self.test_lst)  # uses my mean function
         self.assertEqual(mean, 2)
-        self.assertEqual(statistics.mean(self.test_lst), 2)     # uses built-in stats mean function
-        mean2 = self.statistics.mean(self.random_lst)   # my mean function
-        mean3 = statistics.mean(self.random_lst)    # built-in mean
+        self.assertEqual(statistics.mean(self.test_lst), 2)  # uses built-in stats mean function
+        mean2 = self.statistics.mean(self.random_lst)  # my mean function
+        mean3 = statistics.mean(self.random_lst)  # built-in mean
         self.assertEqual(mean2, mean3)  # compares my mean and built-in
         print("Completed Mean Test")
 
@@ -41,14 +40,13 @@ class MyTestCase(unittest.TestCase):
 
     def test_median(self):
         print("Beginning Median Test")
-        median = self.statistics.median(self.test_lst)      # my_median
+        median = self.statistics.median(self.test_lst)  # my_median
         self.assertEqual(median, 2)
-        self.assertEqual(statistics.median(self.test_lst), 2)       # built-in function
+        self.assertEqual(statistics.median(self.test_lst), 2)  # built-in function
         median2 = self.statistics.median(self.random_lst)
         median3 = statistics.median(self.random_lst)
         self.assertEqual(median2, median3)
         print("Completed Median Test")
-
 
     def test_population_variance(self):
         print("Beginning Variance Test")

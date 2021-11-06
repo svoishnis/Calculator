@@ -4,6 +4,7 @@ from src.Calculator.Division import division
 from src.Calculator.Square import square
 from src.Calculator.Subtraction import subtraction
 
+
 def variance(data):
     try:
         length = len(data)
@@ -12,7 +13,7 @@ def variance(data):
         for x in data:
             x = square(subtraction(mean_v, x))
             total = addition(x, total)
-        return division(length-1, total)
+        return division(length - 1, total)
     except ZeroDivisionError:
         print("Error: Cannot divide by zero")
     except ValueError:

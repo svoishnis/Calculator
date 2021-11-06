@@ -1,11 +1,12 @@
 from collections import Counter
 
+
 def mode(data):
     try:
-        length = len(data) # Calculates the length of the dataset
-        count = Counter(data) #Counts keys and values
-        get_mode = dict(count) #Splits count into dictonary
-        mode_lst = [k for k, v in get_mode.items() if v == max(list(count.values()))] # Iterates through the mode_dict
+        length = len(data)  # Calculates the length of the dataset
+        count = Counter(data)  # Counts keys and values
+        get_mode = dict(count)  # Splits count into dictionary
+        mode_lst = [k for k, v in get_mode.items() if v == max(list(count.values()))]  # Iterates through the mode_dict
         print(type(mode_lst))
         if len(mode_lst) == length:
             get_mode = "No mode was found"

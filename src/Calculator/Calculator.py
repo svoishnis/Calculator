@@ -5,13 +5,15 @@ from src.Calculator.Division import division
 from src.Calculator.Square import square
 from src.Calculator.Squareroot import sqrt
 
-class Calculator: #defines the object
-    result = 0    #set value for result
 
-    def __init__(self): #Object Oriented Programming
+class Calculator:  # defines the object
+    result = 0  # set value for result
+
+    def __init__(self):  # Object Oriented Programming
         pass
+
     def add(self, a, b):
-        self.result = addition(a,b)
+        self.result = addition(a, b)
         return self.result
 
     def subtract(self, a, b):

@@ -1,6 +1,7 @@
 from src.Calculator.Squareroot import sqrt
 from src.Stats.Variance import variance
 
+
 def std(variance_num):
     try:
         variance_num = variance(variance_num)

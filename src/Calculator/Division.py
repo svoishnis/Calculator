@@ -1,5 +1,7 @@
 """This is the function for Division"""
-def division(a,b):
+
+
+def division(a, b):
     try:
         b = float(b)
         a = float(a)

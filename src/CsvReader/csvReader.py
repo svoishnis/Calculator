@@ -1,11 +1,14 @@
 import csv
 from src.FileUtilities.Absolutepath import absolute_path
 
+
 def class_factory(class_name, dictionary):
     return type(class_name, (object,), dictionary)
 
+
 class CsvReader:
     data = []
+
     def __int__(self, filepath):
         self.data = []
         with open(absolute_path(filepath)) as text_data:

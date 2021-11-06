@@ -7,6 +7,7 @@ from src.Stats.Mode import mode
 from src.Stats.PopVariance import population_variance
 from src.Stats.StandardDeviation import std
 
+
 class Stats(Calculator):
     data = []
 
@@ -26,7 +27,7 @@ class Stats(Calculator):
         self.result = median(data)
         return self.result
 
-    def mode(self,data):
+    def mode(self, data):
         self.result = mode(data)
         return self.result
 

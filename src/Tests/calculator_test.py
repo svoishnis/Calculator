@@ -3,12 +3,13 @@ import unittest
 from src.Calculator.Calculator import Calculator
 from src.CsvReader.csvReader import CsvReader
 
-class UnitTest(unittest.TestCase): #Test Driven Development - testing code works
+
+class UnitTest(unittest.TestCase):  # Test Driven Development - testing code works
     def setUp(self) -> None:
-        self.calculator = Calculator() #Initialize Calculator in each unit test
+        self.calculator = Calculator()  # Initialize Calculator in each unit test
 
     def test_calculator_instance(self):
-        self.assertIsInstance(self.calculator, Calculator) #Test Existence of Calculator
+        self.assertIsInstance(self.calculator, Calculator)  # Test Existence of Calculator
         print("Calculator Instance Test Completed")
 
     def test_calculator_result(self):
@@ -65,6 +66,7 @@ class UnitTest(unittest.TestCase): #Test Driven Development - testing code works
     def test_sqrt_negatives_method_calculator(self):
         with self.assertRaises(ValueError):
             self.calculator.sqrt(-25)
+
 
 if __name__ == '__main__':
     unittest.main()
