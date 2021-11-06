@@ -1,5 +1,5 @@
-from src.Calculator.Squareroot import sqrt
-from src.Stats.Variance import variance
+from Calculator.Squareroot import sqrt
+from Stats.Variance import variance
 
 
 def std(variance_num):

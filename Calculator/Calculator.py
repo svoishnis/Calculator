@@ -1,9 +1,9 @@
-from src.Calculator.Addition import addition
-from src.Calculator.Subtraction import subtraction
-from src.Calculator.Multiplication import multiplication
-from src.Calculator.Division import division
-from src.Calculator.Square import square
-from src.Calculator.Squareroot import sqrt
+from Calculator.Addition import addition
+from Calculator.Subtraction import subtraction
+from Calculator.Multiplication import multiplication
+from Calculator.Division import division
+from Calculator.Square import square
+from Calculator.Squareroot import sqrt
 
 
 class Calculator:  # defines the object

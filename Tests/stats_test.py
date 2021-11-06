@@ -1,8 +1,8 @@
 import statistics
 import unittest
-from src.Stats.Stats import Stats
+from Stats.Stats import Stats
 import random
-from src.SupportFunctions.getRandomSeeded import get_random_int_list
+from SupportFunctions.getRandomSeeded import get_random_int_list
 
 
 class MyTestCase(unittest.TestCase):

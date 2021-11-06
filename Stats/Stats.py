@@ -1,11 +1,11 @@
-from src.Calculator.Calculator import Calculator
-from src.CsvReader.csvReader import CsvReader
-from src.Stats.Mean import mean
-from src.Stats.SampleMean import sample_mean
-from src.Stats.Median import median
-from src.Stats.Mode import mode
-from src.Stats.PopVariance import population_variance
-from src.Stats.StandardDeviation import std
+from Calculator.Calculator import Calculator
+from CsvReader import CsvReader
+from Stats.Mean import mean
+from Stats.SampleMean import sample_mean
+from Stats.Median import median
+from Stats.Mode import mode
+from Stats.PopVariance import population_variance
+from Stats.StandardDeviation import std
 
 
 class Stats(Calculator):
