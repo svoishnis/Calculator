@@ -1,4 +1,4 @@
-# Calculator Project
+# Calculator Project Test
 [![Build Status](https://app.travis-ci.com/svoishnis/calc2.svg?branch=main)](https://app.travis-ci.com/svoishnis/calc2)
 
 Run Pip Install

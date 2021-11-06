@@ -2,7 +2,7 @@
 
 
 class Calculator:
-    """ This is the Calculator class"""
+    """ This is the calculator class"""
 
     result = 0
 
