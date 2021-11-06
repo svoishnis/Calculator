@@ -1,26 +1,26 @@
-"""Testing the calculator"""
-from calculator.main import Calculator
+"""Testing the calc"""
+from calc.main import Calculator
 
 
 def test_calculator_result():
-    """testing calculator result is 0"""
+    """testing calc result is 0"""
     calc = Calculator()
     assert calc.result == 0
 
 
 def test_calculator_add():
-    """Testing the Add function of the calculator"""
+    """Testing the Add function of the calc"""
     assert calc.result == 4
 
 
 def test_calculator_get_result():
-    """Testing the Get result method of the calculator"""
+    """Testing the Get result method of the calc"""
     calc = Calculator()
     assert calc.get_result() == 0
 
 
 def test_calculator_subtract():
-    """Testing the subtract method of the calculator"""
+    """Testing the subtract method of the calc"""
     calc = Calculator()
     calc.subtract_number(1)
     assert calc.get_result() == -1
