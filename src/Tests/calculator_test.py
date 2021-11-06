@@ -1,7 +1,7 @@
 """Testing the Calculator"""
 import unittest
-from src.Calculator.Calculator import Calculator
-from src.CsvReader.csvReader import CsvReader
+from Calculator.Calculator import Calculator
+from CsvReader.csvReader import CsvReader
 
 
 class UnitTest(unittest.TestCase):  # Test Driven Development - testing code works
@@ -18,7 +18,7 @@ class UnitTest(unittest.TestCase):  # Test Driven Development - testing code wor
 
     def test_add_method_calculator(self):
         print("Beginning Addition Test")
-        test_data_add = CsvReader('src/Tests/UnitTestData/Unit Test Addition.csv').data
+        test_data_add = CsvReader('Tests/UnitTestData/Unit Test Addition.csv').data
         for row in test_data_add:
             self.assertEqual(self.calculator.add(row['Value 1'], row['Value 2']), int(row['Result']))
         print("Completed Addition Test")
