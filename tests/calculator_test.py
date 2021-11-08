@@ -1,5 +1,5 @@
 """Testing the calc"""
-from calc.main import Calculator
+from calc2.calc.main import Calculator
 
 
 def test_calculator_result():
@@ -10,7 +10,7 @@ def test_calculator_result():
 
 def test_calculator_add():
     """Testing the Add function of the calc"""
-    assert calc.result == 4
+    assert Calculator.result == 4
 
 
 def test_calculator_get_result():

@@ -4,6 +4,9 @@
 class Calculator:
     """ This is the calc class"""
 
+    def __init__(self):
+        pass
+
     result = 0
 
     def get_result(self):
