@@ -27,3 +27,11 @@ class Calculator:
         """ multiply two numbers and store the result"""
         self.result = value_a * value_b
         return self.result
+
+  #  def divide_numbers(self, value_a, value_b):
+      #  """ divide two numbers and store the result"""
+      #  if value_a == 0:
+      #      raise "Cannot divide by Zero"
+      #  else:
+      #      self.result = value_b / value_b
+      #      return self.result
