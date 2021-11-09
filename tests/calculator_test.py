@@ -1,5 +1,5 @@
 """Testing the calc"""
-from calc.calculator import Calculator
+from calc2.calc.calculator import Calculator
 
 def test_calculator_result():
     """testing calc result is 0"""
