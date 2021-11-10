@@ -8,6 +8,8 @@ install:
 # command to run tests
 script:
   - pytest  --pylint --cov
+  environment:
+      - PYTHONPATH=.
 
 branches:
   only:
