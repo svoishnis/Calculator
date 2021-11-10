@@ -36,11 +36,14 @@ def test_calculator_multiply():
 def test_calculator_divide():
     """ tests the division of two numbers"""
     calc = Calculator()
-    result = calc.divide_numbers(3, 2)
+    result = calc.divide_numbers(2, 3)
     assert result == 0.6666666666666666
 
 def test_calculator_divide_except():
     """ tests the exception for the division of two numbers"""
     calc = Calculator()
-    result = calc.divide_numbers(0, 3)
-    assert result == "ZeroDivisionError: Cannot divide by zero"
+    try:
+        result = calc.divide_numbers(3, 0)
+    except ZeroDivisionError:
+        result = "Cannot divide by zero"
+    assert result == "Cannot divide by zero"

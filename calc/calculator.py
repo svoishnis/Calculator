@@ -29,10 +29,6 @@ class Calculator:
         return self.result
 
     def divide_numbers(self, value_a, value_b):
-        """ divide two numbers and store the result"""
-        try:
-            self.result = value_b / value_a
-
-        except ZeroDivisionError:
-            return "ZeroDivisionError: Cannot divide by zero"
+        """ divide two numbers and store the result. Error thrown in python - unit test confirms"""
+        self.result = value_a / value_b
         return self.result
