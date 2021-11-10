@@ -5,6 +5,5 @@ RUN apk add --no-cache gcc musl-dev linux-headers
 USER myuser
 WORKDIR /home/myuser
 ENV PATH="/home/myuser/.local/bin:${PATH}"
-ENV PYTHONPATH="/home/myuser"
 COPY --chown=myuser:myuser . .
 RUN pip install -r requirements.txt
