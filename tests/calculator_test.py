@@ -2,8 +2,6 @@
 from calc.calculator import Calculator
 
 
-
-
 def test_calculator_result():
     """testing calc result is 0"""
     calc = Calculator()
@@ -34,3 +32,15 @@ def test_calculator_multiply():
     calc = Calculator()
     result = calc.multiply_numbers(1, 2)
     assert result == 2
+
+def test_calculator_divide():
+    """ tests the division of two numbers"""
+    calc = Calculator()
+    result = calc.divide_numbers(3, 2)
+    assert result == 0.6666666666666666
+
+def test_calculator_divide_except():
+    """ tests the exception for the division of two numbers"""
+    calc = Calculator()
+    result = calc.divide_numbers(0, 3)
+    assert result == "ZeroDivisionError: Cannot divide by zero"

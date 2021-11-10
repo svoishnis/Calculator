@@ -30,7 +30,9 @@ class Calculator:
 
     def divide_numbers(self, value_a, value_b):
         """ divide two numbers and store the result"""
-        if value_a == 0:
-            raise ZeroDivisionError("Cannot divide by Zero")
-        self.result = value_b / value_a
+        try:
+            self.result = value_b / value_a
+
+        except ZeroDivisionError:
+            return "ZeroDivisionError: Cannot divide by zero"
         return self.result
