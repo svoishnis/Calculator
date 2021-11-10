@@ -5,3 +5,5 @@
 .ash_history
 __pycache__
 .coverage
+.venv
+/.python_history

@@ -1,5 +1,8 @@
 """Testing the calc"""
-from calc2.calc.calculator import Calculator
+from calc.calculator import Calculator
+
+
+
 
 def test_calculator_result():
     """testing calc result is 0"""
@@ -15,6 +18,7 @@ def test_calculator_add():
 def test_calculator_get_result():
     """Testing the Get result method of the calc"""
     calc = Calculator()
+
     assert calc.get_result() == 0
 
 
