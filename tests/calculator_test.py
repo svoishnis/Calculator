@@ -20,7 +20,6 @@ def test_calculator_divide():
 def test_calculator_divide_except():
     """ tests the exception for the division of two numbers"""
     try:
-        result = Calculator.divide_numbers(3, 0)
+        assert Calculator.divide_numbers(3, 0)
     except ZeroDivisionError:
-        result = "Cannot divide by zero"
-    assert result == "Cannot divide by zero"
+        assert ZeroDivisionError
