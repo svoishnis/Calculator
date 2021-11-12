@@ -61,4 +61,4 @@ class Calculator:
         if value_b == 0:
             raise ZeroDivisionError("Cannot divide by zero")
         Calculator.add_calculation_to_history(Division.create(value_a,value_b))
-        return value_a / value_b
+        return Calculator.get_result_of_last_calculation_added_to_history()
