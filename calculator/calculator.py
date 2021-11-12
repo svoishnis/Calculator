@@ -1,5 +1,6 @@
 """ This is the increment function"""
 from calc.addition import Addition
+from calc.division import Division
 from calc.subtraction import Subtraction
 from calc.multiplication import Multiplication
 class Calculator:
@@ -59,4 +60,5 @@ class Calculator:
         """ divide two numbers and store the result. Error thrown in python - unit test confirms"""
         if value_b == 0:
             raise ZeroDivisionError("Cannot divide by zero")
+        Calculator.add_calculation_to_history(Division.create(value_a,value_b))
         return value_a / value_b
