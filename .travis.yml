@@ -12,6 +12,7 @@ branches:
   only:
     - main
     - development
+    - part2
 
 env:
   - PYTHONPATH=.
