@@ -16,7 +16,7 @@ class Calculator:
         """ multiply two numbers and store the result"""
         return value_a * value_b
 
-    def divide_numbers(self, value_a, value_b):
+    @staticmethod
+    def divide_numbers(value_a, value_b):
         """ divide two numbers and store the result. Error thrown in python - unit test confirms"""
-        self.result = value_a / value_b
-        return self.result
+        return value_a / value_b
