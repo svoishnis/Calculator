@@ -17,3 +17,10 @@ def test_calculator_divide():
     """ tests multiplication of two numbers"""
     assert Calculator.divide_numbers(2,3) == 0.6666666666666666
 
+def test_calculator_divide_except():
+    """ tests the exception for the division of two numbers"""
+    try:
+        result = Calculator.divide_numbers(3, 0)
+    except ZeroDivisionError:
+        result = "Cannot divide by zero"
+    assert result == "Cannot divide by zero"
