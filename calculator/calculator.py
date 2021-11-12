@@ -19,4 +19,6 @@ class Calculator:
     @staticmethod
     def divide_numbers(value_a, value_b):
         """ divide two numbers and store the result. Error thrown in python - unit test confirms"""
+        if value_b == 0:
+            raise ZeroDivisionError("Cannot divide by zero")
         return value_a / value_b
