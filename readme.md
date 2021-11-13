@@ -1,5 +1,5 @@
 # Calculator Project Setup
-[![Build Status](https://app.travis-ci.com/svoishnis/calc2.svg?branch=part2)](https://app.travis-ci.com/svoishnis/calc2)
+[![Build Status](https://app.travis-ci.com/svoishnis/calc2.svg?branch=main)](https://app.travis-ci.com/svoishnis/calc2)
 
 Run Pip Install
 pip install -r requirements.txt
