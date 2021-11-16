@@ -1,5 +1,6 @@
 """ This is the increment function"""
 from calc.calculations.addition import Addition
+from calc.calculations.division import Division
 from calc.calculations.subtraction import Subtraction
 from calc.calculations.multiplication import Multiplication
 class Calculator:
@@ -51,4 +52,11 @@ class Calculator:
         """ multiply two numbers and store the result"""
         # pylint: disable=maybe-no-member
         Calculator.add_calculation_to_history(Multiplication.create(value_a,value_b))
+        return Calculator.get_result_of_last_calculation_added_to_history()
+
+    @staticmethod
+    def divide_numbers(value_a, value_b):
+        """ divide two numbers and store the result"""
+        # pylint: disable=maybe-no-member
+        Calculator.add_calculation_to_history(Division.create(value_a, value_b))
         return Calculator.get_result_of_last_calculation_added_to_history()
