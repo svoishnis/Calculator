@@ -33,6 +33,7 @@ class Calculator:
     def add_number(value_a, value_b):
         """ adds number to result"""
         #create an addition object using the factory we created on the calculation class
+        # pylint: disable=maybe-no-member
         addition = Addition.create(value_a,value_b)
         Calculator.add_calculation_to_history(addition)
         return Calculator.get_result_of_last_calculation_added_to_history()
@@ -41,11 +42,13 @@ class Calculator:
     def subtract_number(value_a, value_b):
         """ subtract number from result"""
         # create an subtraction object using the factory we created on the calculation class
+        # pylint: disable=maybe-no-member
         subtraction = Subtraction.create(value_a, value_b)
         Calculator.add_calculation_to_history(subtraction)
         return Calculator.get_result_of_last_calculation_added_to_history()
     @staticmethod
     def multiply_numbers(value_a, value_b):
         """ multiply two numbers and store the result"""
+        # pylint: disable=maybe-no-member
         Calculator.add_calculation_to_history(Multiplication.create(value_a,value_b))
         return Calculator.get_result_of_last_calculation_added_to_history()
