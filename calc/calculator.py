@@ -21,13 +21,13 @@ class Calculator:
         return calculation.get_result()
     @staticmethod
     def multiply_numbers(*args):
-        """ multiplication number from result"""
+        """ multiply number from result"""
         calculation = Multiplication(args)
         Calculations.add_calculation(calculation)
         return calculation.get_result()
     @staticmethod
     def divide_numbers(*args):
-        """ multiplication number from result"""
+        """ divided number from result"""
         calculation = Division(args)
         Calculations.add_calculation(calculation)
         return calculation.get_result()
