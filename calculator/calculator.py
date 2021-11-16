@@ -8,20 +8,25 @@ class Calculator:
     history = []
     @staticmethod
     def get_result_of_first_calculation_added_to_history():
+        """Gets the result of the oldest calculation stored"""
         return Calculator.history[0].getResult()
     @staticmethod
     def clear_history():
+        """Method clears the history of the calculations stored"""
         Calculator.history.clear()
         return True
     @staticmethod
     def history_count():
+        """Method gets the number of calculations stored"""
         return len(Calculator.history)
     @staticmethod
     def add_calculation_to_history(calculation):
+        """Adds calculation to the history"""
         Calculator.history.append(calculation)
         return True
     @staticmethod
     def get_result_of_last_calculation_added_to_history():
+        """Method gets the result of the most recent calculation stored"""
         # method gets the last item added to the list automatically
         return Calculator.history[-1].getResult()
     @staticmethod
