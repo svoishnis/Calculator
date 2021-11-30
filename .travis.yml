@@ -12,7 +12,6 @@ branches:
     - main
     - development
     - part2
-    - part4
     - part5
 
       env:
