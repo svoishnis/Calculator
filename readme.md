@@ -1,5 +1,7 @@
-# Calculator Project Setup
-[![Build Status](https://app.travis-ci.com/svoishnis/calc2.svg?branch=main)](https://app.travis-ci.com/svoishnis/calc2)
+# Calculator Project
+[![Build Status](https://app.travis-ci.com/svoishnis/calc2.svg?branch=part5)](https://app.travis-ci.com/svoishnis/calc2)
+Run Pip Install
+pip install -r requirements.txt
 
 To run tests, Lint, and Coverage report use this command:
 

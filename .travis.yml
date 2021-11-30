@@ -14,5 +14,5 @@ branches:
     - part2
     - part5
 
-      env:
-        - PYTHONPATH=.
+env:
+  - PYTHONPATH=.
