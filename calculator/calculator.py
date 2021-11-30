@@ -1,62 +1,38 @@
 """ This is the increment function"""
-from calc.calculations.addition import Addition
-from calc.calculations.division import Division
-from calc.calculations.subtraction import Subtraction
-from calc.calculations.multiplication import Multiplication
+from calc.history.calculations import Calculations
+
+
 class Calculator:
     """ This is the Calculator class"""
-    #this is the calculator static property
-    history = []
     @staticmethod
-    def get_result_of_first_calculation_added_to_history():
-        """Gets the result of the oldest calculation stored"""
-        return Calculator.history[0].getResult()
+    def get_last_result_value():
+        """This gets the result of the calculation"""
+        return Calculations.get_last_calculation_result_value()
     @staticmethod
-    def clear_history():
-        """Method clears the history of the calculations stored"""
-        Calculator.history.clear()
-        return True
-    @staticmethod
-    def history_count():
-        """Method gets the number of calculations stored"""
-        return len(Calculator.history)
-    @staticmethod
-    def add_calculation_to_history(calculation):
-        """Adds calculation to the history"""
-        Calculator.history.append(calculation)
-        return True
-    @staticmethod
-    def get_result_of_last_calculation_added_to_history():
-        """Method gets the result of the most recent calculation stored"""
-        # method gets the last item added to the list automatically
-        return Calculator.history[-1].getResult()
-    @staticmethod
-    def add_number(value_a, value_b):
-        """ adds number to result"""
+    def add_number(tuple_values: tuple):
+        """ adds list of numbers"""
         #create an addition object using the factory we created on the calculation class
         # pylint: disable=maybe-no-member
-        addition = Addition.create(value_a,value_b)
-        Calculator.add_calculation_to_history(addition)
-        return Calculator.get_result_of_last_calculation_added_to_history()
+        Calculator.add_addition_calculation(tuple_values)
+        return True
     @staticmethod
     #this is an example of a calling method
-    def subtract_number(value_a, value_b):
-        """ subtract number from result"""
+    def subtract_number(tuple_values: tuple):
+        """ subtract list of numbers from result"""
         # create an subtraction object using the factory we created on the calculation class
         # pylint: disable=maybe-no-member
-        subtraction = Subtraction.create(value_a, value_b)
-        Calculator.add_calculation_to_history(subtraction)
-        return Calculator.get_result_of_last_calculation_added_to_history()
+        Calculator.add_subtraction_calculation(tuple_values)
+        return True
     @staticmethod
-    def multiply_numbers(value_a, value_b):
-        """ multiply two numbers and store the result"""
+    def multiply_numbers(tuple_values: tuple):
+        """ multiply numbers from the result"""
         # pylint: disable=maybe-no-member
-        Calculator.add_calculation_to_history(Multiplication.create(value_a,value_b))
-        return Calculator.get_result_of_last_calculation_added_to_history()
+        Calculator.add_multiplication_calculation(tuple_values)
+        return True
 
     @staticmethod
-    def divide_numbers(value_a, value_b):
-        """ divide two numbers and store the result"""
+    def divide_numbers(tuple_values: tuple):
+        """ divide numbers from the result"""
         # pylint: disable=maybe-no-member
-        Calculator.add_calculation_to_history(Division.create(value_a, value_b))
-        return Calculator.get_result_of_last_calculation_added_to_history()
+        Calculator.add_division_calculation(tuple_values)
+        return True
