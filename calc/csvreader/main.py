@@ -23,6 +23,17 @@ def iterateFile(df):
     """Iterates through a dataframe"""
     dateframe_rows = df.iterrows()
     return dateframe_rows
+def createTuples(dateframe_rows):
+    """Creates the Tuples for Other Methods"""
+    list_of_tuples = list(map(parseDataFrameRow, dateframe_rows))
+    return list_of_tuples
+
+def createSums(list_of_tuples):
+    list_of_sums = list(map(parseTupleforAddition, list_of_tuples))
+    return list_of_sums
+def createValidations(list_of_sums):
+    list_of_validation = list(map(compareCalcToResults, list_of_sums))
+    return list_of_validation
 
 def parseDataFrameRow(row):
     mTuple = row[1]
@@ -33,22 +44,18 @@ def parseDataFrameRow(row):
 
 def parseTupleforAddition(mTuple):
   Calculator.add_numbers(mTuple[0:2])
-  operation = 'Addition'
   return (Calculator.get_last_result_value(), mTuple[2])
 
 def parseTupleforSubtraction(mTuple):
   Calculator.subtract_numbers(mTuple[0:2])
-  operation = 'Subtraction'
   return (Calculator.get_last_result_value(), mTuple[2])
 
 def parseTupleforMultiplication(mTuple):
   Calculator.multiply_numbers(mTuple[0:2])
-  operation = 'Multiplication'
   return (Calculator.get_last_result_value(), mTuple[2])
 
 def parseTupleforDivision(mTuple):
   Calculator.divide_numbers(mTuple[0:2])
-  operation = 'Division'
   return (Calculator.get_last_result_value(), mTuple[2])
 
 def compareCalcToResults(mTuple):
@@ -80,25 +87,10 @@ def setOperation(file):
 
 
 
-
-
-
-list_of_tuples = list(map(parseDataFrameRow, dateframe_rows))
-list_of_sums = list(map(parseTupleforAddition, list_of_tuples))
-list_of_validation = list(map(compareCalcToResults, list_of_sums))
-
-
-print(list_of_tuples)
-print(list_of_sums)
-print(list_of_validation)
-print(getCurrentTime())
-
-
-
-with open('result_log2.csv', 'w') as csvfile:
+"""with open('result_log2.csv', 'w') as csvfile:
     csvwriter = csv.writer(csvfile, delimiter=',')
     csvwriter.writerow(['Timestamp', 'FileName', 'Record Number', 'Operation', 'Result'])
     for i in df.iterrows():
         csvwriter.writerow([getCurrentTime(), file, addRecord(resetRecordCount()),setOperation(file), Calculator.get_last_result_value() ])
         print()
-print(df)
+print(df)"""
