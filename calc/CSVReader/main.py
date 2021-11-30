@@ -1,36 +1,28 @@
 import csv
 import os.path
+import time
 import pandas as pandas
 
 from calc.calculator import Calculator
+file = 'addition.csv'
 
-filename = os.path.abspath('addition.csv')
 
-"""with open(filename) as csv_file:
-    csv_reader = csv.DictReader(csv_file, delimiter=',')
-    line_count = 0
-    for row in csv_reader:
-        if line_count == 0:
-            print(f'Header Row {", ".join(row)}')
-            line_count += 1
-        print(f'\t input {row["value_1"]}, {row["value_2"]} equate to {row["result"]}')
-        line_count += 1
-    print(f'Processed {line_count} lines.')
+def getAbbPath(file):
+    """Gets the Entire File Path"""
+    filename = os.path.abspath(file)
+    return filename
 
-with open('result_log.csv', mode='w') as result_log:
-    header = []
-    result_writer = csv.writer(result_log, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+def readFile(file):
+    """Reads a File Provided Using Pandas and Creates a Structure"""
+    df = pandas.read_csv(getAbbPath(file),
+                         header=0,
+                         names=['Value_1', 'Value_2', 'Result'])
+    return df
 
-    result_writer.writerow(['testing', 'next'])
-    result_writer.writerow(['value_1', 'test'])
-"""
-
-df = pandas.read_csv(filename,
-                     header=0,
-                     names=['Value_1', 'Value_2', 'Result'])
-
-dateframe_rows = df.iterrows()
-# y= list(map(lambda dataframe_row: (dataframe_row[1].Value_1, y[1].Value_2), dateframe_rows))
+def iterateFile(df):
+    """Iterates through a dataframe"""
+    dateframe_rows = df.iterrows()
+    return dateframe_rows
 
 def parseDataFrameRow(row):
     mTuple = row[1]
@@ -41,28 +33,72 @@ def parseDataFrameRow(row):
 
 def parseTupleforAddition(mTuple):
   Calculator.add_numbers(mTuple[0:2])
+  operation = 'Addition'
   return (Calculator.get_last_result_value(), mTuple[2])
 
-def compareSumsToResults(mTuple):
+def parseTupleforSubtraction(mTuple):
+  Calculator.subtract_numbers(mTuple[0:2])
+  operation = 'Subtraction'
+  return (Calculator.get_last_result_value(), mTuple[2])
+
+def parseTupleforMultiplication(mTuple):
+  Calculator.multiply_numbers(mTuple[0:2])
+  operation = 'Multiplication'
+  return (Calculator.get_last_result_value(), mTuple[2])
+
+def parseTupleforDivision(mTuple):
+  Calculator.divide_numbers(mTuple[0:2])
+  operation = 'Division'
+  return (Calculator.get_last_result_value(), mTuple[2])
+
+def compareCalcToResults(mTuple):
+    calculated = mTuple[0]
+    provided = mTuple[1]
+    flag = calculated == provided
+    return flag
+
+def getCurrentTime():
+    current_time = time.time()
+    local_time = time.ctime(current_time)
+    return str(local_time)
+
+def resetRecordCount():
+    return 0
+def addRecord(current):
+    new_count = current + 1
+    return new_count
+def setOperation(file):
+    if file == 'addition.csv':
+        operation = 'Addition'
+    if file == 'substraction.csv':
+        operation = 'Subtraction'
+    if file == 'multiplication.csv':
+        operation = 'Multiplication'
+    if file == 'division.csv':
+        operation = 'Division'
+    return operation
+
+
+
 
 
 
 list_of_tuples = list(map(parseDataFrameRow, dateframe_rows))
 list_of_sums = list(map(parseTupleforAddition, list_of_tuples))
+list_of_validation = list(map(compareCalcToResults, list_of_sums))
 
-print("test")
-for i, j in df.iteritems():
-    my_tuple = df.at[i]
 
-    print(Calculator.get_last_result_value())
-    print()
-    """df['calcresult'] = Calculator.get_last_result_value()"""
-    """Calculator.add_numbers(i, j)
-    print(Calculator.get_last_result_value())
-    print('Result')"""
+print(list_of_tuples)
+print(list_of_sums)
+print(list_of_validation)
+print(getCurrentTime())
+
+
+
+with open('result_log2.csv', 'w') as csvfile:
+    csvwriter = csv.writer(csvfile, delimiter=',')
+    csvwriter.writerow(['Timestamp', 'FileName', 'Record Number', 'Operation', 'Result'])
+    for i in df.iterrows():
+        csvwriter.writerow([getCurrentTime(), file, addRecord(resetRecordCount()),setOperation(file), Calculator.get_last_result_value() ])
+        print()
 print(df)
-
-
-
-"""print(df)"""
-df.to_csv('result_log2.csv')
