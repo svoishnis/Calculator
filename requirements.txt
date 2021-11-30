@@ -2,3 +2,4 @@ pytest-cov
 pytest
 pycodestyle
 pytest-pylint
+pandas
