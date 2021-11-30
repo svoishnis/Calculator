@@ -12,7 +12,7 @@ class Calculator:
         """ adds list of numbers"""
         #create an addition object using the factory we created on the calculation class
         # pylint: disable=maybe-no-member
-        Calculator.add_addition_calculation(tuple_values)
+        Calculations.add_addition_calculation(tuple_values)
         return True
     @staticmethod
     #this is an example of a calling method
@@ -20,18 +20,18 @@ class Calculator:
         """ subtract list of numbers from result"""
         # create an subtraction object using the factory we created on the calculation class
         # pylint: disable=maybe-no-member
-        Calculator.add_subtraction_calculation(tuple_values)
+        Calculations.add_subtraction_calculation(tuple_values)
         return True
     @staticmethod
     def multiply_numbers(tuple_values: tuple):
         """ multiply numbers from the result"""
         # pylint: disable=maybe-no-member
-        Calculator.add_multiplication_calculation(tuple_values)
+        Calculations.add_multiplication_calculation(tuple_values)
         return True
 
     @staticmethod
     def divide_numbers(tuple_values: tuple):
         """ divide numbers from the result"""
         # pylint: disable=maybe-no-member
-        Calculator.add_division_calculation(tuple_values)
+        Calculations.add_division_calculation(tuple_values)
         return True
