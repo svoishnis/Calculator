@@ -13,7 +13,7 @@ def test_calculator_add_static(clear_history_fixture):
     # pylint: disable=unused-argument,redefined-outer-name
     my_tuple = (1.0,2.0,5.0)
     Calculator.add_numbers(my_tuple)
-    assert Calculator.get_last_result() == 8.0
+    assert Calculator.get_last_result_value == 8.0
 
 def test_calculator_subtract_static(clear_history_fixture):
     """Testing the subtract method of the calc"""
