@@ -117,5 +117,11 @@ with open('result_log2.csv', 'w') as csvfile:
     csvwriter.writerow(['Timestamp', 'FileName', 'Record Number', 'Operation', 'CalcResult', 'Flag'])
     for i in range(len(df)):
         a, b = list_of_sums[i]
-        csvwriter.writerow([getCurrentTime(), file, addRecord(i), setOperation(), a, list_of_validation[i]])
-        '''print()'''
+        if a == 'ZeroDivisionError':
+            error_row = ([getCurrentTime(), op, 'Error', 'ZeroDivisionError'])
+            csvwriter.writerow([getCurrentTime(), file, addRecord(i), setOperation(), a, "Error Triggered"])
+        else:
+            csvwriter.writerow([getCurrentTime(), file, addRecord(i), setOperation(), a, list_of_validation[i]])
+with open('ERROR_log.csv', 'w') as csvfile:
+    csverrorwriter = csv.writer(csvfile, delimiter=',')
+    csverrorwriter.writerow(error_row)
