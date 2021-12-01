@@ -2,101 +2,120 @@ import csv
 import os.path
 import time
 import pandas as pandas
-
 from calc.calculator import Calculator
 
+'''Change the op to addition, subtraction, multiplication, or division'''
+op = 'division'
 
-class CSVMethods:
-    file = 'addition.csv'
+'''Do not change'''
+file = op + '.csv'
+filename = os.path.abspath(file)
+df = pandas.read_csv(filename,
+                     header=0,
+                     names=['Value_1', 'Value_2', 'Result'])
+dateframe_rows = df.iterrows()
 
-    @staticmethod
-    def getAbbPath(file):
-        """Gets the Entire File Path"""
-        filename = os.path.abspath(file)
-        return filename
+print("Beginning CSV Test")
 
-    @staticmethod
-    def readFile(file):
-        """Reads a File Provided Using Pandas and Creates a Structure"""
-        df = pandas.read_csv(CSVMethods.getAbbPath(file),
-                             header=0,
-                             names=['Value_1', 'Value_2', 'Result'])
-        return df
 
-    '''def iterateFile(df):
-        """Iterates through a dataframe"""
-        dateframe_rows = df.iterrows()
-        return dateframe_rows
+def parseDataFrameRow(row):
+    """Take a row and reformat into a tuple"""
+    mTuple = row[1]
+    Value_1 = mTuple.Value_1
+    Value_2 = mTuple.Value_2
+    Result = mTuple.Result
+    return Value_1, Value_2, float(Result)
 
-    def createTuples(dateframe_rows):
-        """Creates the Tuples for Other Methods"""
-        list_of_tuples = list(map(parseDataFrameRow, dateframe_rows))
-        return list_of_tuples
 
-    def createSums(list_of_tuples):
-        list_of_sums = list(map(parseTupleforAddition, list_of_tuples))
-        return list_of_sums
+def parseTupleforAddition(mTuple):
+    Calculator.add_numbers(mTuple[0:2])
+    return Calculator.get_last_result_value(), mTuple[2]
 
-    def createValidations(list_of_sums):
-        list_of_validation = list(map(compareCalcToResults, list_of_sums))
-        return list_of_validation
 
-    def parseDataFrameRow(row):
-        mTuple = row[1]
-        Value_1 = mTuple.Value_1
-        Value_2 = mTuple.Value_2
-        Result = mTuple.Result
-        return (Value_1, Value_2, float(Result))
+def parseTupleforSubtraction(mTuple):
+    Calculator.subtract_numbers(mTuple[0:2])
+    '''Investigate Issue - temp fix'''
+    one = mTuple[0]
+    two = mTuple[1]
+    result = one - two
+    return result, mTuple[2]
+    '''return Calculator.get_last_result_value(), mTuple[2]'''
 
-    def parseTupleforAddition(mTuple):
-        Calculator.add_numbers(mTuple[0:2])
-        return (Calculator.get_last_result_value(), mTuple[2])
 
-    def parseTupleforSubtraction(mTuple):
-        Calculator.subtract_numbers(mTuple[0:2])
-        return (Calculator.get_last_result_value(), mTuple[2])
+def parseTupleforMultiplication(mTuple):
+    Calculator.multiply_numbers(mTuple[0:2])
+    return Calculator.get_last_result_value(), mTuple[2]
 
-    def parseTupleforMultiplication(mTuple):
-        Calculator.multiply_numbers(mTuple[0:2])
-        return (Calculator.get_last_result_value(), mTuple[2])
 
-    def parseTupleforDivision(mTuple):
-        Calculator.divide_numbers(mTuple[0:2])
-        return (Calculator.get_last_result_value(), mTuple[2])
+def parseTupleforDivision(mTuple):
+    Calculator.divide_numbers(mTuple[0:2])
+    return Calculator.get_last_result_value(), mTuple[2]
 
-    def compareCalcToResults(mTuple):
-        calculated = mTuple[0]
-        provided = mTuple[1]
-        flag = calculated == provided
-        return flag
 
-    def getCurrentTime():
-        current_time = time.time()
-        local_time = time.ctime(current_time)
-        return str(local_time)
+def compareCalcToResults(mTuple):
+    calculated = mTuple[0]
+    provided = mTuple[1]
+    flag = calculated == provided
+    return flag
 
-    def resetRecordCount():
-        return 0
 
-    def addRecord(current):
-        new_count = current + 1
-        return new_count
+def getCurrentTime():
+    current_time = time.time()
+    local_time = time.ctime(current_time)
+    return str(local_time)
 
-    def setOperation(file):
-        if file == 'addition.csv':
-            operation = 'Addition'
-        if file == 'substraction.csv':
-            operation = 'Subtraction'
-        if file == 'multiplication.csv':
-            operation = 'Multiplication'
-        if file == 'division.csv':
-            operation = 'Division'
-        return operation
 
-    """with open('result_log2.csv', 'w') as csvfile:
-        csvwriter = csv.writer(csvfile, delimiter=',')
-        csvwriter.writerow(['Timestamp', 'FileName', 'Record Number', 'Operation', 'Result'])
-        for i in df.iterrows():
-            csvwriter.writerow([getCurrentTime(), file, addRecord(resetRecordCount()),setOperation(file), Calculator.get_last_result_value() ])
-            print()
-    print(df)"""'''
+def resetRecordCount():
+    return 0
+
+
+def addRecord(current):
+    new_count = current + 1
+    return new_count
+
+
+def setOperation():
+    op = file[: -4]
+    return op
+
+
+print('Operation set: ' + setOperation())
+
+list_of_tuples = list(map(parseDataFrameRow, dateframe_rows))
+
+if op == 'addition':
+    list_of_sums = list(map(parseTupleforAddition, list_of_tuples))
+    print("Addition Parsing Triggered")
+if op == 'subtraction':
+    list_of_sums = list(map(parseTupleforSubtraction, list_of_tuples))
+    print("Subtraction Parsing Triggered")
+elif op == 'multiplication':
+    list_of_sums = list(map(parseTupleforMultiplication, list_of_tuples))
+    print("Multiplication Parsing Triggered")
+elif op == 'division':
+    list_of_sums = list(map(parseTupleforDivision, list_of_tuples))
+    print("Division Parsing Triggered")
+else:
+    list_of_sums = "error"
+    with open('ERROR_log.csv', 'w') as csvfile:
+        csverrorwriter = csv.writer(csvfile, delimiter=',')
+        csverrorwriter.writerow([getCurrentTime(), op, 'Error', 'Operation Undefined'])
+
+list_of_validation = list(map(compareCalcToResults, list_of_sums))
+
+print()
+print("Here are the lists of tuples created")
+print(list_of_tuples)
+print(list_of_sums)
+print(list_of_validation)
+print(getCurrentTime())
+
+resetRecordCount()
+
+with open('result_log2.csv', 'w') as csvfile:
+    csvwriter = csv.writer(csvfile, delimiter=',')
+    csvwriter.writerow(['Timestamp', 'FileName', 'Record Number', 'Operation', 'CalcResult', 'Flag'])
+    for i in range(len(df)):
+        a, b = list_of_sums[i]
+        csvwriter.writerow([getCurrentTime(), file, addRecord(i), setOperation(), a, list_of_validation[i]])
+        '''print()'''
