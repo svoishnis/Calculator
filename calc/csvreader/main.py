@@ -1,6 +1,9 @@
 import csv
 import os.path
+import shutil
 import time
+from shutil import copy2
+
 import pandas as pandas
 from calc.calculator import Calculator
 
@@ -10,6 +13,8 @@ op = 'division'
 '''Do not change'''
 file = op + '.csv'
 filename = os.path.abspath(file)
+donefile = 'done\\' + op + '.csv'
+done = os.path.abspath(donefile)
 df = pandas.read_csv(filename,
                      header=0,
                      names=['Value_1', 'Value_2', 'Result'])
@@ -117,11 +122,16 @@ with open('result_log2.csv', 'w') as csvfile:
     csvwriter.writerow(['Timestamp', 'FileName', 'Record Number', 'Operation', 'CalcResult', 'Flag'])
     for i in range(len(df)):
         a, b = list_of_sums[i]
-        if a == 'ZeroDivisionError':
-            error_row = ([getCurrentTime(), op, 'Error', 'ZeroDivisionError'])
-            csvwriter.writerow([getCurrentTime(), file, addRecord(i), setOperation(), a, "Error Triggered"])
-        else:
+        if a != 'ZeroDivisionError':
             csvwriter.writerow([getCurrentTime(), file, addRecord(i), setOperation(), a, list_of_validation[i]])
-with open('ERROR_log.csv', 'w') as csvfile:
-    csverrorwriter = csv.writer(csvfile, delimiter=',')
-    csverrorwriter.writerow(error_row)
+        elif a == 'ZeroDivisionError':
+            csvwriter.writerow([getCurrentTime(), file, addRecord(i), setOperation(), a, 'ZeroDivisionError'])
+            error_row = ([getCurrentTime(), op, 'Error', 'Error Triggered'])
+            with open('ERROR_log.csv', 'a') as f:
+                csverrorwriter = csv.writer(f, delimiter=',')
+                csverrorwriter.writerow([error_row])
+
+        else:
+            csvwriter.writerow(["Done"])
+
+shutil.move(filename, done, copy_function=copy2)
