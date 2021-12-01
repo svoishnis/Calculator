@@ -64,7 +64,7 @@ def compareCalcToResults(mTuple):
     return flag
 
 
-def getCurrentTime():
+def getTime():
     current_time = time.time()
     local_time = time.ctime(current_time)
     return str(local_time)
@@ -104,7 +104,7 @@ else:
     list_of_sums = "error"
     with open('ERROR_log.csv', 'w') as csvfile:
         csverrorwriter = csv.writer(csvfile, delimiter=',')
-        csverrorwriter.writerow([getCurrentTime(), op, 'Error', 'Operation Undefined'])
+        csverrorwriter.writerow([getTime(), op, 'Error', 'Operation Undefined'])
 
 list_of_validation = list(map(compareCalcToResults, list_of_sums))
 
@@ -113,20 +113,20 @@ print("Here are the lists of tuples created")
 print(list_of_tuples)
 print(list_of_sums)
 print(list_of_validation)
-print(getCurrentTime())
+print(getTime())
 
 resetRecordCount()
 
 with open('result_log2.csv', 'w') as csvfile:
     csvwriter = csv.writer(csvfile, delimiter=',')
-    csvwriter.writerow(['Timestamp', 'FileName', 'Record Number', 'Operation', 'CalcResult', 'Flag'])
+    csvwriter.writerow(['Timestamp', 'FileName', 'RecordNumber', 'Operation', 'CalcResult', 'Flag'])
     for i in range(len(df)):
         a, b = list_of_sums[i]
         if a != 'ZeroDivisionError':
-            csvwriter.writerow([getCurrentTime(), file, addRecord(i), setOperation(), a, list_of_validation[i]])
+            csvwriter.writerow([getTime(), file, addRecord(i), setOperation(), a, list_of_validation[i]])
         elif a == 'ZeroDivisionError':
-            csvwriter.writerow([getCurrentTime(), file, addRecord(i), setOperation(), a, 'ZeroDivisionError'])
-            error_row = ([getCurrentTime(), op, 'Error', 'Error Triggered'])
+            csvwriter.writerow([getTime(), file, addRecord(i), setOperation(), a, 'ZeroDivisionError'])
+            error_row = ([getTime(), op, 'Error', 'Error Triggered'])
             with open('ERROR_log.csv', 'a') as f:
                 csverrorwriter = csv.writer(f, delimiter=',')
                 csverrorwriter.writerow([error_row])
