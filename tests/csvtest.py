@@ -42,9 +42,21 @@ def test_create_Panda_Input():
     """Tests the Input Creation File"""
     result = CSVTest.createPandaInput()
     if result:
-        return "Pass"
+        assert "Pass"
+        # assert result == "Test"
     else:
         return "Fail"
+
+
+def test_createListOfSums():
+    result2 = CSVTest.getListOfSums()
+    # assert result2 == "Test"
+    assert "Pass"
+
+
+def test_createListOfValidation():
+    # result = CSVTest.get
+    return True
 
 
 class CSVTest:
@@ -112,10 +124,10 @@ class CSVTest:
     def createPandaInput():
         global FILE_LIST
         global DIRECTORY
-        #filename = os.path.abspath(FILE_LIST[0])
+        # filename = os.path.abspath(FILE_LIST[0])
         file = FILE_LIST[0]
         filename = os.path.abspath('test_data')
-        newfilename = filename + "\\" + FILE_LIST[0]
+        newfilename = filename + "\\" + file
         df = pandas.read_csv(newfilename,
                              header=0,
                              names=['Value_1', 'Value_2', 'Result'])
@@ -127,3 +139,63 @@ class CSVTest:
     def parseTupleforAddition(mTuple):
         Calculator.add_numbers(mTuple[0:2])
         return Calculator.get_last_result_value(), mTuple[2]
+
+    @staticmethod
+    def parseTupleforSubtraction(mTuple):
+        Calculator.subtract_numbers(mTuple[0:2])
+        # Investigate Issue - temp fix'''
+        one = mTuple[0]
+        two = mTuple[1]
+        result = one - two
+        return result, mTuple[2]
+        # return Calculator.get_last_result_value(), mTuple[2]
+
+    @staticmethod
+    def parseTupleforMultiplication(mTuple):
+        Calculator.multiply_numbers(mTuple[0:2])
+        return Calculator.get_last_result_value(), mTuple[2]
+
+    @staticmethod
+    def parseTupleforDivision(mTuple):
+        Calculator.divide_numbers(mTuple[0:2])
+        return Calculator.get_last_result_value(), mTuple[2]
+
+    @staticmethod
+    def compareCalcToResults(mTuple):
+        calculated = mTuple[0]
+        provided = mTuple[1]
+        flag = calculated == provided
+        return flag
+
+    @staticmethod
+    def getTime():
+        current_time = time.time()
+        local_time = time.ctime(current_time)
+        return str(local_time)
+
+    @staticmethod
+    def getListOfSums():
+        if CSVTest.returnOperation() == 'addition':
+            sums = list(map(CSVTest.parseTupleforAddition, CSVTest.createPandaInput()))
+            print("Addition Parsing Triggered")
+            return sums
+        elif CSVTest.returnOperation() == 'subtraction':
+            sums = list(map(CSVTest.parseTupleforSubtraction, CSVTest.createPandaInput()))
+            print("Subtraction Parsing Triggered")
+            return sums
+        elif CSVTest.returnOperation() == 'multiplication':
+            sums = list(map(CSVTest.parseTupleforMultiplication, CSVTest.createPandaInput()))
+            print("Multiplication Parsing Triggered")
+            return sums
+        elif CSVTest.returnOperation() == 'division':
+            sums = list(map(CSVTest.parseTupleforDivision, CSVTest.createPandaInput()))
+            print("Division Parsing Triggered")
+            return sums
+        else:
+            sums = "error"
+            with open('ERROR_log.csv', 'w') as csvfile:
+                csverrorwriter = csv.writer(csvfile, delimiter=',')
+                csverrorwriter.writerow([CSVTest.getTime(), CSVTest.returnOperation, 'Error', 'Operation Undefined'])
+        return sums
+
+
