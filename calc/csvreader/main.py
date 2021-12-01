@@ -4,17 +4,16 @@ import os.path
 import shutil
 import time
 from shutil import copy2
-
-import pandas as pandas
+import pandas
 from calc.calculator import Calculator
 
 '''Change the op to addition, subtraction, multiplication, or division'''
-op = 'division'
+Op = 'division'
 
 '''Do not change'''
-file = op + '.csv'
+file = Op + '.csv'
 filename = os.path.abspath(file)
-donefile = 'done\\' + op + '.csv'
+donefile = 'done\\' + Op + '.csv'
 done = os.path.abspath(donefile)
 df = pandas.read_csv(filename,
                      header=0,
@@ -45,7 +44,7 @@ def parseTupleforSubtraction(mTuple):
     two = mTuple[1]
     result = one - two
     return result, mTuple[2]
-    '''return Calculator.get_last_result_value(), mTuple[2]'''
+    # return Calculator.get_last_result_value(), mTuple[2]
 
 
 def parseTupleforMultiplication(mTuple):
@@ -80,40 +79,39 @@ def addRecord(current):
     return new_count
 
 
-def setOperation():
-    op = file[: -4]
-    return op
+def setOp():
+    return Op
 
 
-print('Operation set: ' + setOperation())
+print('Operation set: ' + setOp())
 
-list_of_tuples = list(map(parseDataFrameRow, dateframe_rows))
+List_of_tuples = list(map(parseDataFrameRow, dateframe_rows))
 
-if op == 'addition':
-    list_of_sums = list(map(parseTupleforAddition, list_of_tuples))
+if Op == 'addition':
+    List_of_sums = list(map(parseTupleforAddition, List_of_tuples))
     print("Addition Parsing Triggered")
-if op == 'subtraction':
-    list_of_sums = list(map(parseTupleforSubtraction, list_of_tuples))
+if Op == 'subtraction':
+    List_of_sums = list(map(parseTupleforSubtraction, List_of_tuples))
     print("Subtraction Parsing Triggered")
-elif op == 'multiplication':
-    list_of_sums = list(map(parseTupleforMultiplication, list_of_tuples))
+elif Op == 'multiplication':
+    List_of_sums = list(map(parseTupleforMultiplication, List_of_tuples))
     print("Multiplication Parsing Triggered")
-elif op == 'division':
-    list_of_sums = list(map(parseTupleforDivision, list_of_tuples))
+elif Op == 'division':
+    List_of_sums = list(map(parseTupleforDivision, List_of_tuples))
     print("Division Parsing Triggered")
 else:
-    list_of_sums = "error"
+    List_of_sums = "error"
     with open('ERROR_log.csv', 'w') as csvfile:
         csverrorwriter = csv.writer(csvfile, delimiter=',')
-        csverrorwriter.writerow([getTime(), op, 'Error', 'Operation Undefined'])
+        csverrorwriter.writerow([getTime(), Op, 'Error', 'Operation Undefined'])
 
-list_of_validation = list(map(compareCalcToResults, list_of_sums))
+List_of_validation = list(map(compareCalcToResults, List_of_sums))
 
 print()
 print("Here are the lists of tuples created")
-print(list_of_tuples)
-print(list_of_sums)
-print(list_of_validation)
+print(List_of_tuples)
+print(List_of_sums)
+print(List_of_validation)
 print(getTime())
 
 resetRecordCount()
@@ -122,12 +120,12 @@ with open('result_log2.csv', 'w') as csvfile:
     csvwriter = csv.writer(csvfile, delimiter=',')
     csvwriter.writerow(['Timestamp', 'FileName', 'RecordNumber', 'Operation', 'CalcResult', 'Flag'])
     for i in range(len(df)):
-        a, b = list_of_sums[i]
+        a, b = List_of_sums[i]
         if a != 'ZeroDivisionError':
-            csvwriter.writerow([getTime(), file, addRecord(i), setOperation(), a, list_of_validation[i]])
+            csvwriter.writerow([getTime(), file, addRecord(i), setOp(), a, List_of_validation[i]])
         elif a == 'ZeroDivisionError':
-            csvwriter.writerow([getTime(), file, addRecord(i), setOperation(), a, 'ZeroDivisionError'])
-            error_row = ([getTime(), op, 'Error', 'Error Triggered'])
+            csvwriter.writerow([getTime(), file, addRecord(i), setOp(), a, 'ZeroDivisionError'])
+            error_row = ([getTime(), Op, 'Error', 'Error Triggered'])
             with open('ERROR_log.csv', 'a') as f:
                 csverrorwriter = csv.writer(f, delimiter=',')
                 csverrorwriter.writerow([error_row])
