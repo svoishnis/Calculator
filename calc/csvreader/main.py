@@ -7,13 +7,13 @@ from shutil import copy2
 import pandas
 from calc.calculator import Calculator
 
-'''Change the op to addition, subtraction, multiplication, or division'''
-Op = 'division'
+"""Change the op to addition, subtraction, multiplication, or division"""
+Operation = 'division'
 
 '''Do not change'''
-file = Op + '.csv'
+file = Operation + '.csv'
 filename = os.path.abspath(file)
-donefile = 'done\\' + Op + '.csv'
+donefile = 'done\\' + Operation + '.csv'
 done = os.path.abspath(donefile)
 df = pandas.read_csv(filename,
                      header=0,
@@ -33,11 +33,13 @@ def parseDataFrameRow(row):
 
 
 def parseTupleforAddition(mTuple):
+    """Parses the Tuple for the Addition Method"""
     Calculator.add_numbers(mTuple[0:2])
     return Calculator.get_last_result_value(), mTuple[2]
 
 
 def parseTupleforSubtraction(mTuple):
+    """Parses the Tuple for the Subtraction Method"""
     Calculator.subtract_numbers(mTuple[0:2])
     '''Investigate Issue - temp fix'''
     one = mTuple[0]
@@ -48,16 +50,19 @@ def parseTupleforSubtraction(mTuple):
 
 
 def parseTupleforMultiplication(mTuple):
+    """Parses the Tuple for the Multiplication Method"""
     Calculator.multiply_numbers(mTuple[0:2])
     return Calculator.get_last_result_value(), mTuple[2]
 
 
 def parseTupleforDivision(mTuple):
+    """Parses the Tuple for the Division Method"""
     Calculator.divide_numbers(mTuple[0:2])
     return Calculator.get_last_result_value(), mTuple[2]
 
 
 def compareCalcToResults(mTuple):
+    """Compares the Caclulated to the Provided Result"""
     calculated = mTuple[0]
     provided = mTuple[1]
     flag = calculated == provided
@@ -65,45 +70,49 @@ def compareCalcToResults(mTuple):
 
 
 def getTime():
+    """Returns the Current Time in a Readable Format"""
     current_time = time.time()
     local_time = time.ctime(current_time)
     return str(local_time)
 
 
 def resetRecordCount():
+    """Resets the Record Count to Zero"""
     return 0
 
 
 def addRecord(current):
+    """Counter for the Number of Records Recorded"""
     new_count = current + 1
     return new_count
 
 
 def setOp():
-    return Op
+    """Sets the Operation Type"""
+    return Operation
 
 
 print('Operation set: ' + setOp())
 
 List_of_tuples = list(map(parseDataFrameRow, dateframe_rows))
 
-if Op == 'addition':
+if Operation == 'addition':
     List_of_sums = list(map(parseTupleforAddition, List_of_tuples))
     print("Addition Parsing Triggered")
-if Op == 'subtraction':
+if Operation == 'subtraction':
     List_of_sums = list(map(parseTupleforSubtraction, List_of_tuples))
     print("Subtraction Parsing Triggered")
-elif Op == 'multiplication':
+elif Operation == 'multiplication':
     List_of_sums = list(map(parseTupleforMultiplication, List_of_tuples))
     print("Multiplication Parsing Triggered")
-elif Op == 'division':
+elif Operation == 'division':
     List_of_sums = list(map(parseTupleforDivision, List_of_tuples))
     print("Division Parsing Triggered")
 else:
     List_of_sums = "error"
     with open('ERROR_log.csv', 'w') as csvfile:
         csverrorwriter = csv.writer(csvfile, delimiter=',')
-        csverrorwriter.writerow([getTime(), Op, 'Error', 'Operation Undefined'])
+        csverrorwriter.writerow([getTime(), Operation, 'Error', 'Operation Undefined'])
 
 List_of_validation = list(map(compareCalcToResults, List_of_sums))
 
@@ -125,7 +134,7 @@ with open('result_log2.csv', 'w') as csvfile:
             csvwriter.writerow([getTime(), file, addRecord(i), setOp(), a, List_of_validation[i]])
         elif a == 'ZeroDivisionError':
             csvwriter.writerow([getTime(), file, addRecord(i), setOp(), a, 'ZeroDivisionError'])
-            error_row = ([getTime(), Op, 'Error', 'Error Triggered'])
+            error_row = ([getTime(), Operation, 'Error', 'Error Triggered'])
             with open('ERROR_log.csv', 'a') as f:
                 csverrorwriter = csv.writer(f, delimiter=',')
                 csverrorwriter.writerow([error_row])
