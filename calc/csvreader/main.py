@@ -106,34 +106,34 @@ class CSVTest:
         return list_of_tuples
 
     @staticmethod
-    def parse_tuple_addition(mTuple):
-        Calculator.add_numbers(mTuple[0:2])
-        return Calculator.get_last_result_value(), mTuple[2]
+    def parse_tuple_addition(my_tuple):
+        Calculator.add_numbers(my_tuple[0:2])
+        return Calculator.get_last_result_value(), my_tuple[2]
 
     @staticmethod
-    def parse_tuple_subtraction(mTuple):
-        Calculator.subtract_numbers(mTuple[0:2])
+    def parse_tuple_subtraction(my_tuple):
+        Calculator.subtract_numbers(my_tuple[0:2])
         # Investigate Issue - temp fix'''
-        one = mTuple[0]
-        two = mTuple[1]
+        one = my_tuple[0]
+        two = my_tuple[1]
         result = one - two
-        return result, mTuple[2]
-        # return Calculator.get_last_result_value(), mTuple[2]
+        return result, my_tuple[2]
+        # return Calculator.get_last_result_value(), my_tuple[2]
 
     @staticmethod
-    def parse_tuple_multiplication(mTuple):
-        Calculator.multiply_numbers(mTuple[0:2])
-        return Calculator.get_last_result_value(), mTuple[2]
+    def parse_tuple_multiplication(my_tuple):
+        Calculator.multiply_numbers(my_tuple[0:2])
+        return Calculator.get_last_result_value(), my_tuple[2]
 
     @staticmethod
-    def parse_tuple_division(mTuple):
-        Calculator.divide_numbers(mTuple[0:2])
-        return Calculator.get_last_result_value(), mTuple[2]
+    def parse_tuple_division(my_tuple):
+        Calculator.divide_numbers(my_tuple[0:2])
+        return Calculator.get_last_result_value(), my_tuple[2]
 
     @staticmethod
-    def compare_calc_with_results(mTuple):
-        calculated = mTuple[0]
-        provided = mTuple[1]
+    def compare_calc_with_results(my_tuple):
+        calculated = my_tuple[0]
+        provided = my_tuple[1]
         flag = calculated == provided
         return flag
 
@@ -163,9 +163,9 @@ class CSVTest:
             return sums
         else:
             sums = "error"
-            with open('ERROR_log.csv', 'w') as csvfile:
-                csverrorwriter = csv.writer(csvfile, delimiter=',')
-                csverrorwriter.writerow([CSVTest.get_time(), CSVTest.get_operation, 'Operation Undefined'])
+            with open('ERROR_log.csv', 'w') as csv_file:
+                csv_error_writer = csv.writer(csv_file, delimiter=',')
+                csv_error_writer.writerow([CSVTest.get_time(), CSVTest.get_operation, 'Operation Undefined'])
         return sums
 
     @staticmethod
@@ -181,29 +181,28 @@ class CSVTest:
 
     @staticmethod
     def write_to_log():
-        with open(os.path.abspath('result_log2.csv'), 'w') as csvfile:
-            global FILE_LIST
-            csvwriter = csv.writer(csvfile, delimiter=',')
-            csvwriter.writerow(['Timestamp', 'FileName', 'Record #', 'Operation', 'CalcResult', 'Flag'])
+        with open(os.path.abspath('result_log2.csv'), 'w') as csv_file:
+            csv_writer = csv.writer(csv_file, delimiter=',')
+            csv_writer.writerow(['Timestamp', 'FileName', 'Record #', 'Operation', 'CalcResult', 'Flag'])
             loop_count = len(CSVTest.create_panda_df())
             for i in range(loop_count):
                 # range(len(CSVTest.createPandaDF())):
-                a, b = CSVTest.get_list_sums()[i]
-                if a != 'ZeroDivisionError':
-                    csvwriter.writerow(
+                calculated, provided = CSVTest.get_list_sums()[i]
+                if calculated != 'ZeroDivisionError':
+                    csv_writer.writerow(
                         [CSVTest.get_time(), FILE_LIST[i - 1], CSVTest.add_record(i),
-                         CSVTest.get_operation(), a, CSVTest.get_validation()[i]])
-                elif a == 'ZeroDivisionError':
-                    csvwriter.writerow(
+                         CSVTest.get_operation(), calculated, CSVTest.get_validation()[i]])
+                elif calculated == 'ZeroDivisionError':
+                    csv_writer.writerow(
                         [CSVTest.get_time(), FILE_LIST[i - 1], CSVTest.add_record(i), CSVTest.get_operation(), a,
                          'ZeroDivisionError'])
                     error_row = ([CSVTest.get_time(), CSVTest.get_operation(), 'Error', 'Error Triggered'])
                     with open('ERROR_log.csv', 'a') as f:
-                        csverrorwriter = csv.writer(f, delimiter=',')
-                        csverrorwriter.writerow([error_row])
+                        csv_error_writer = csv.writer(f, delimiter=',')
+                        csv_error_writer.writerow([error_row])
 
                 else:
-                    csvwriter.writerow(["Done"])
+                    csv_writer.writerow(["Done"])
 
             return "Successfully Written"
 
