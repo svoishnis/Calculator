@@ -6,7 +6,6 @@ import time
 from shutil import copy2
 import pandas
 from calc.calculator import Calculator
-import pytest
 
 # Global Variables
 ADDITION_OP = 'addition'
@@ -16,8 +15,7 @@ FILE_LIST = ["default"]
 FILE_RECORD_COUNT = 100
 
 
-
-def test_get_Files():
+def test_getFiles():
     """Tests Getting the Files List"""
     CSVTest.resetRecordCount()
     CSVTest.resetFileList()
@@ -49,19 +47,19 @@ def test_create_Panda_Input():
         assert "Pass"
         # assert result == "Test"
     else:
-        return "Fail"
+        assert "Fail"
 
 
 def test_createListOfSums():
-    result2 = CSVTest.getListOfSums()
-    # assert result2 == "Test"
+    result2 = CSVTest.getListOfSums()  # pylint: disable=unused-argument
+    # assert result2 == "Test"          # pylint: disable=unused-argument
     assert "Pass"
 
 
 def test_createListOfValidation():
-    result = CSVTest.getValidation()
+    result = CSVTest.getValidation()  # pylint: disable=unused-argument
     assert "Pass"
-    # assert result == "Test"
+    # assert result == "Test"          # pylint: disable=unused-argument
 
 
 # def test_writeToLog():
@@ -220,7 +218,7 @@ class CSVTest:
             sums = "error"
             with open('ERROR_log.csv', 'w') as csvfile:
                 csverrorwriter = csv.writer(csvfile, delimiter=',')
-                csverrorwriter.writerow([CSVTest.getTime(), CSVTest.returnOperation, 'Error', 'Operation Undefined'])
+                csverrorwriter.writerow([CSVTest.getTime(), CSVTest.returnOperation, 'Operation Undefined'])
         return sums
 
     @staticmethod
@@ -239,15 +237,15 @@ class CSVTest:
         with open(os.path.abspath('result_log2.csv'), 'w') as csvfile:
             global FILE_LIST
             csvwriter = csv.writer(csvfile, delimiter=',')
-            csvwriter.writerow(['Timestamp', 'FileName', 'RecordNumber', 'Operation', 'CalcResult', 'Flag'])
+            csvwriter.writerow(['Timestamp', 'FileName', 'Record #', 'Operation', 'CalcResult', 'Flag'])
             loop_count = len(CSVTest.createPandaDF())
             for i in range(loop_count):
                 # range(len(CSVTest.createPandaDF())):
                 a, b = CSVTest.getListOfSums()[i]
                 if a != 'ZeroDivisionError':
                     csvwriter.writerow(
-                        [CSVTest.getTime(), FILE_LIST[i - 1], CSVTest.addRecord(i), CSVTest.returnOperation(), a,
-                         CSVTest.getValidation()[i]])
+                        [CSVTest.getTime(), FILE_LIST[i - 1], CSVTest.addRecord(i),
+                         CSVTest.returnOperation(), a, CSVTest.getValidation()[i]])
                 elif a == 'ZeroDivisionError':
                     csvwriter.writerow(
                         [CSVTest.getTime(), FILE_LIST[i - 1], CSVTest.addRecord(i), CSVTest.returnOperation(), a,
@@ -261,3 +259,9 @@ class CSVTest:
                     csvwriter.writerow(["Done"])
 
             return "Successfully Written"
+
+    @staticmethod
+    def moveToDone():
+        """This method moves files to the done folder"""
+        shutil.move(FILE, os.path.abspath(FILE_LIST[FILE_RECORD_COUNT]), copy_function=copy2)
+        return 'True'
