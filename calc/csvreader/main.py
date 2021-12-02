@@ -14,10 +14,10 @@ DIRECTORY = os.path.abspath(FILE)
 FILE_LIST = ["default"]
 FILE_RECORD_COUNT = 100
 
-"""CSV Class"""
-
 
 class CSVTest:
+    """CSV Class"""
+
     @staticmethod
     def get_files():
         """Looks in the Directory for Files"""
@@ -47,8 +47,8 @@ class CSVTest:
         if len(FILE_LIST) == 0:
             next_op = "Operation Undefined"
         else:
-            nextfile = FILE_LIST[FILE_RECORD_COUNT]
-            next_op = nextfile[: -4]
+            next_file = FILE_LIST[FILE_RECORD_COUNT]
+            next_op = next_file[: -4]
         return next_op
 
     @staticmethod
@@ -74,10 +74,10 @@ class CSVTest:
     def parse_data_frame_row(row):
         """Take a row and reformat into a tuple"""
         my_tuple = row[1]
-        value_1 = my_tuple.value_1
-        value_2 = my_tuple.value_2
-        result = my_tuple.result
-        return value_1, value_2, float(result)
+        Value_1 = my_tuple.Value_1
+        Value_2 = my_tuple.Value_2
+        Result = my_tuple.Result
+        return Value_1, Value_2, float(Result)
 
     @staticmethod
     def create_tuple():
@@ -92,8 +92,8 @@ class CSVTest:
         global DIRECTORY
         # filename = os.path.abspath(FILE_LIST[0])
         file = FILE_LIST[0]
-        filename = os.path.abspath('test_data')
-        new_file_name = filename + "\\" + file
+        file_name = os.path.abspath('test_data')
+        new_file_name = file_name + "\\" + file
         data_frame = pandas.read_csv(new_file_name,
                                      header=0,
                                      names=['Value_1', 'Value_2', 'Result'])
@@ -178,7 +178,9 @@ class CSVTest:
             sums = "error"
             with open('ERROR_log.csv', 'w') as csv_file:
                 csv_error_writer = csv.writer(csv_file, delimiter=',')
-                csv_error_writer.writerow([CSVTest.get_time(), CSVTest.get_operation, 'Operation Undefined'])
+                csv_error_writer.writerow([CSVTest.get_time(),
+                                           CSVTest.get_operation,
+                                           'Operation Undefined'])
         return sums
 
     @staticmethod
@@ -196,9 +198,11 @@ class CSVTest:
     @staticmethod
     def write_to_log():
         """Writes the results to logs"""
-        with open(os.path.abspath('result_log2.csv'), 'w') as csv_file:
+        with open(os.path.abspath('result_log2.csv'),
+                  'w') as csv_file:
             csv_writer = csv.writer(csv_file, delimiter=',')
-            csv_writer.writerow(['Timestamp', 'FileName', 'Record #', 'Operation', 'CalcResult', 'Flag'])
+            csv_writer.writerow(['Timestamp', 'FileName', 'Record #',
+                                 'Operation', 'CalcResult', 'Flag'])
             loop_count = len(CSVTest.create_panda_df())
             for i in range(loop_count):
                 # range(len(CSVTest.createPandaDF())):
@@ -209,9 +213,11 @@ class CSVTest:
                          CSVTest.get_operation(), calculated, CSVTest.get_validation()[i]])
                 elif calculated == 'ZeroDivisionError':
                     csv_writer.writerow(
-                        [CSVTest.get_time(), FILE_LIST[i - 1], CSVTest.add_record(i),
-                         CSVTest.get_operation(), calculated, 'ZeroDivisionError'])
-                    error_row = ([CSVTest.get_time(), CSVTest.get_operation(), 'Error', 'Error Triggered'])
+                        [CSVTest.get_time(), FILE_LIST[i - 1],
+                         CSVTest.add_record(i), CSVTest.get_operation(),
+                         calculated, 'ZeroDivisionError'])
+                    error_row = ([CSVTest.get_time(), CSVTest.get_operation(),
+                                  'Error', 'Error Triggered'])
                     with open('ERROR_log.csv', 'a') as f:
                         csv_error_writer = csv.writer(f, delimiter=',')
                         csv_error_writer.writerow([error_row])
