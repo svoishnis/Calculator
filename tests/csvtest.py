@@ -16,17 +16,20 @@ FILE_LIST = ["default"]
 FILE_RECORD_COUNT = 100
 
 
+
 def test_get_Files():
     """Tests Getting the Files List"""
     CSVTest.resetRecordCount()
     CSVTest.resetFileList()
     list = CSVTest.getFiles()
+    print("Retrieve Files")
     assert len(list) == 3
 
 
 def test_get_First_Operation():
     """Tests the First Operation Setting From File List"""
     result = CSVTest.returnOperation()
+    print("Checks Addition is the First File in List")
     assert result == 'addition'
 
 
@@ -40,8 +43,9 @@ def test_get_First_Operation():
 
 def test_create_Panda_Input():
     """Tests the Input Creation File"""
-    result = CSVTest.createPandaInput()
+    result = CSVTest.createTuple()
     if result:
+        print("Data Successfully Passed Into List for Processing")
         assert "Pass"
         # assert result == "Test"
     else:
@@ -55,8 +59,15 @@ def test_createListOfSums():
 
 
 def test_createListOfValidation():
-    # result = CSVTest.get
-    return True
+    result = CSVTest.getValidation()
+    assert "Pass"
+    # assert result == "Test"
+
+
+# def test_writeToLog():
+#    result = CSVTest.writeToLog()
+#    print("Look in the result_log2 file for contents")
+#    assert result == "Successfully Written"
 
 
 class CSVTest:
@@ -121,7 +132,12 @@ class CSVTest:
         return Value_1, Value_2, float(Result)
 
     @staticmethod
-    def createPandaInput():
+    def createTuple():
+        processed_list = CSVTest.getTuples(CSVTest.doIterration(CSVTest.createPandaDF()))
+        return processed_list
+
+    @staticmethod
+    def createPandaDF():
         global FILE_LIST
         global DIRECTORY
         # filename = os.path.abspath(FILE_LIST[0])
@@ -131,7 +147,16 @@ class CSVTest:
         df = pandas.read_csv(newfilename,
                              header=0,
                              names=['Value_1', 'Value_2', 'Result'])
+        return df
+
+    @staticmethod
+    def doIterration(df):
+        """Creates the Dataframe Rows from DF"""
         dataframe_rows = df.iterrows()
+        return dataframe_rows
+
+    @staticmethod
+    def getTuples(dataframe_rows):
         list_of_tuples = list(map(CSVTest.parseDataFrameRow, dataframe_rows))
         return list_of_tuples
 
@@ -176,19 +201,19 @@ class CSVTest:
     @staticmethod
     def getListOfSums():
         if CSVTest.returnOperation() == 'addition':
-            sums = list(map(CSVTest.parseTupleforAddition, CSVTest.createPandaInput()))
+            sums = list(map(CSVTest.parseTupleforAddition, CSVTest.createTuple()))
             print("Addition Parsing Triggered")
             return sums
         elif CSVTest.returnOperation() == 'subtraction':
-            sums = list(map(CSVTest.parseTupleforSubtraction, CSVTest.createPandaInput()))
+            sums = list(map(CSVTest.parseTupleforSubtraction, CSVTest.createTuple()))
             print("Subtraction Parsing Triggered")
             return sums
         elif CSVTest.returnOperation() == 'multiplication':
-            sums = list(map(CSVTest.parseTupleforMultiplication, CSVTest.createPandaInput()))
+            sums = list(map(CSVTest.parseTupleforMultiplication, CSVTest.createTuple()))
             print("Multiplication Parsing Triggered")
             return sums
         elif CSVTest.returnOperation() == 'division':
-            sums = list(map(CSVTest.parseTupleforDivision, CSVTest.createPandaInput()))
+            sums = list(map(CSVTest.parseTupleforDivision, CSVTest.createTuple()))
             print("Division Parsing Triggered")
             return sums
         else:
@@ -198,4 +223,41 @@ class CSVTest:
                 csverrorwriter.writerow([CSVTest.getTime(), CSVTest.returnOperation, 'Error', 'Operation Undefined'])
         return sums
 
+    @staticmethod
+    def getValidation():
+        """Gets List of Validation for Calculations"""
+        validation = list(map(CSVTest.compareCalcToResults, CSVTest.getListOfSums()))
+        return validation
 
+    @staticmethod
+    def addRecord(current):
+        new_count = current + 1
+        return new_count
+
+    @staticmethod
+    def writeToLog():
+        with open(os.path.abspath('result_log2.csv'), 'w') as csvfile:
+            global FILE_LIST
+            csvwriter = csv.writer(csvfile, delimiter=',')
+            csvwriter.writerow(['Timestamp', 'FileName', 'RecordNumber', 'Operation', 'CalcResult', 'Flag'])
+            loop_count = len(CSVTest.createPandaDF())
+            for i in range(loop_count):
+                # range(len(CSVTest.createPandaDF())):
+                a, b = CSVTest.getListOfSums()[i]
+                if a != 'ZeroDivisionError':
+                    csvwriter.writerow(
+                        [CSVTest.getTime(), FILE_LIST[i - 1], CSVTest.addRecord(i), CSVTest.returnOperation(), a,
+                         CSVTest.getValidation()[i]])
+                elif a == 'ZeroDivisionError':
+                    csvwriter.writerow(
+                        [CSVTest.getTime(), FILE_LIST[i - 1], CSVTest.addRecord(i), CSVTest.returnOperation(), a,
+                         'ZeroDivisionError'])
+                    error_row = ([CSVTest.getTime(), CSVTest.returnOperation(), 'Error', 'Error Triggered'])
+                    with open('ERROR_log.csv', 'a') as f:
+                        csverrorwriter = csv.writer(f, delimiter=',')
+                        csverrorwriter.writerow([error_row])
+
+                else:
+                    csvwriter.writerow(["Done"])
+
+            return "Successfully Written"
