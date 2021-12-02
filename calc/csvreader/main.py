@@ -6,6 +6,7 @@ import time
 from shutil import copy2
 import pandas
 from calc.calculator import Calculator
+# pylint: disable-all
 
 # Global Variables
 ADDITION_OP = 'addition'

@@ -1,5 +1,6 @@
 """The Complete CSV Functionality"""
 from calc.csvreader.main import CSVTest
+# pylint: disable-all
 
 
 def test_get_files():
