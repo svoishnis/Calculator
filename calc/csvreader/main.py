@@ -14,6 +14,8 @@ DIRECTORY = os.path.abspath(FILE)
 FILE_LIST = ["default"]
 FILE_RECORD_COUNT = 100
 
+"""CSV Class"""
+
 
 class CSVTest:
     @staticmethod
@@ -43,18 +45,18 @@ class CSVTest:
         """Returns the Operation of the File at Record Count"""
         global FILE_LIST
         if len(FILE_LIST) == 0:
-            nextOp = "Operation Undefined"
+            next_op = "Operation Undefined"
         else:
             nextfile = FILE_LIST[FILE_RECORD_COUNT]
-            nextOp = nextfile[: -4]
-        return nextOp
+            next_op = nextfile[: -4]
+        return next_op
 
     @staticmethod
     def return_loop_count():
         """Returns the New Count of the Length of Files"""
         global FILE_RECORD_COUNT
-        newCount = FILE_RECORD_COUNT + 1
-        return newCount
+        new_count = FILE_RECORD_COUNT + 1
+        return new_count
 
     @staticmethod
     def get_file_path():
@@ -72,10 +74,10 @@ class CSVTest:
     def parse_data_frame_row(row):
         """Take a row and reformat into a tuple"""
         my_tuple = row[1]
-        Value_1 = my_tuple.Value_1
-        Value_2 = my_tuple.Value_2
-        Result = my_tuple.Result
-        return Value_1, Value_2, float(Result)
+        value_1 = my_tuple.value_1
+        value_2 = my_tuple.value_2
+        result = my_tuple.result
+        return value_1, value_2, float(result)
 
     @staticmethod
     def create_tuple():
@@ -91,16 +93,16 @@ class CSVTest:
         # filename = os.path.abspath(FILE_LIST[0])
         file = FILE_LIST[0]
         filename = os.path.abspath('test_data')
-        newfilename = filename + "\\" + file
-        data_frame = pandas.read_csv(newfilename,
+        new_file_name = filename + "\\" + file
+        data_frame = pandas.read_csv(new_file_name,
                                      header=0,
                                      names=['Value_1', 'Value_2', 'Result'])
         return data_frame
 
     @staticmethod
-    def do_iteration(df):
+    def do_iteration(data_frame):
         """Creates the Dataframe Rows from DF"""
-        dataframe_rows = df.iterrows()
+        dataframe_rows = data_frame.iterrows()
         return dataframe_rows
 
     @staticmethod
@@ -207,8 +209,8 @@ class CSVTest:
                          CSVTest.get_operation(), calculated, CSVTest.get_validation()[i]])
                 elif calculated == 'ZeroDivisionError':
                     csv_writer.writerow(
-                        [CSVTest.get_time(), FILE_LIST[i - 1], CSVTest.add_record(i), CSVTest.get_operation(), a,
-                         'ZeroDivisionError'])
+                        [CSVTest.get_time(), FILE_LIST[i - 1], CSVTest.add_record(i),
+                         CSVTest.get_operation(), calculated, 'ZeroDivisionError'])
                     error_row = ([CSVTest.get_time(), CSVTest.get_operation(), 'Error', 'Error Triggered'])
                     with open('ERROR_log.csv', 'a') as f:
                         csv_error_writer = csv.writer(f, delimiter=',')
