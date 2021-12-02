@@ -58,6 +58,7 @@ class CSVTest:
 
     @staticmethod
     def get_file_path():
+        """Gets the file path"""
         global FILE_LIST
         if len(FILE_LIST) == 0:
             next_path = "No Files"
@@ -78,11 +79,13 @@ class CSVTest:
 
     @staticmethod
     def create_tuple():
+        """Creates a tuple from the dataframe"""
         processed_list = CSVTest.get_tuples(CSVTest.do_iteration(CSVTest.create_panda_df()))
         return processed_list
 
     @staticmethod
     def create_panda_df():
+        """Creates a dataframe from an input file"""
         global FILE_LIST
         global DIRECTORY
         # filename = os.path.abspath(FILE_LIST[0])
@@ -102,16 +105,19 @@ class CSVTest:
 
     @staticmethod
     def get_tuples(dataframe_rows):
+        """gets the tuple from the provided dataframe"""
         list_of_tuples = list(map(CSVTest.parse_data_frame_row, dataframe_rows))
         return list_of_tuples
 
     @staticmethod
     def parse_tuple_addition(my_tuple):
+        """Parses the tuple to the addition method"""
         Calculator.add_numbers(my_tuple[0:2])
         return Calculator.get_last_result_value(), my_tuple[2]
 
     @staticmethod
     def parse_tuple_subtraction(my_tuple):
+        """Parses the tuple to the subtraction method"""
         Calculator.subtract_numbers(my_tuple[0:2])
         # Investigate Issue - temp fix'''
         one = my_tuple[0]
@@ -122,16 +128,19 @@ class CSVTest:
 
     @staticmethod
     def parse_tuple_multiplication(my_tuple):
+        """Parses the tuple to the multiplication method"""
         Calculator.multiply_numbers(my_tuple[0:2])
         return Calculator.get_last_result_value(), my_tuple[2]
 
     @staticmethod
     def parse_tuple_division(my_tuple):
+        """Parses the tuple to the division method"""
         Calculator.divide_numbers(my_tuple[0:2])
         return Calculator.get_last_result_value(), my_tuple[2]
 
     @staticmethod
     def compare_calc_with_results(my_tuple):
+        """Takes list of sums - compares calculated to provided"""
         calculated = my_tuple[0]
         provided = my_tuple[1]
         flag = calculated == provided
@@ -139,12 +148,14 @@ class CSVTest:
 
     @staticmethod
     def get_time():
+        """gets the current time (readable)"""
         current_time = time.time()
         local_time = time.ctime(current_time)
         return str(local_time)
 
     @staticmethod
     def get_list_sums():
+        """Gets the tuple of sums"""
         if CSVTest.get_operation() == 'addition':
             sums = list(map(CSVTest.parse_tuple_addition, CSVTest.create_tuple()))
             print("Addition Parsing Triggered")
@@ -176,11 +187,13 @@ class CSVTest:
 
     @staticmethod
     def add_record(current):
+        """Increments the current count by 1"""
         new_count = current + 1
         return new_count
 
     @staticmethod
     def write_to_log():
+        """Writes the results to logs"""
         with open(os.path.abspath('result_log2.csv'), 'w') as csv_file:
             csv_writer = csv.writer(csv_file, delimiter=',')
             csv_writer.writerow(['Timestamp', 'FileName', 'Record #', 'Operation', 'CalcResult', 'Flag'])
