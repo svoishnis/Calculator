@@ -11,7 +11,7 @@ def test_get_files():
     assert len(list) == 3
 
 
-def test_get_First_Operation():
+def test_get_first_operation():
     """Tests the First Operation Setting From File List"""
     result = CSVTest.get_operation()
     print("Checks Addition is the First File in List")
@@ -26,26 +26,26 @@ def test_get_First_Operation():
 #    assert result == 'division'
 
 
-def test_create_Panda_Input():
+def test_create_panda_input():
     """Tests the Input Creation File"""
     result = CSVTest.create_tuple()
     if result:
         print("Data Successfully Passed Into List for Processing")
-        assert "Pass"
+        assert 1 == 1
         # assert result == "Test"
     else:
-        assert "Fail"
+        assert 1 == 0
 
 
-def test_createListOfSums():
+def test_create_list_of_sums():
     result2 = CSVTest.get_list_sums()  # pylint: disable=unused-argument
     # assert result2 == "Test"          # pylint: disable=unused-argument
-    assert "Pass"
+    assert 1 == 1
 
 
-def test_createListOfValidation():
+def test_create_list_of_validation():
     result = CSVTest.get_validation()  # pylint: disable=unused-argument
-    assert "Pass"
+    assert 1 == 1
     # assert result == "Test"          # pylint: disable=unused-argument
 
 
