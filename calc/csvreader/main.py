@@ -6,6 +6,7 @@ import time
 from shutil import copy2
 import pandas
 from calc.calculator import Calculator
+
 # pylint: disable-all
 
 # Global Variables
@@ -25,6 +26,11 @@ class CSVTest:
         global FILE_LIST
         for filename in os.listdir(os.getcwd() + "\\test_data"):
             FILE_LIST.append(filename)
+        return FILE_LIST
+
+    @staticmethod
+    def get_file_list():
+        """Returns the global file list"""
         return FILE_LIST
 
     @staticmethod

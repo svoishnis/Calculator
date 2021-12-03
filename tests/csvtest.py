@@ -1,5 +1,7 @@
 """The Complete CSV Functionality"""
 from calc.csvreader.main import CSVTest
+
+
 # pylint: disable-all
 
 
@@ -9,6 +11,13 @@ def test_get_files():
     CSVTest.reset_file_list()
     list = CSVTest.get_files()
     print("Retrieve Files")
+    assert len(list) == 3
+
+
+def test_get_file_list():
+    """Test Getting the Files List"""
+    list = CSVTest.get_file_list()
+    print("Retrieving global file List")
     assert len(list) == 3
 
 
@@ -48,7 +57,6 @@ def test_create_list_of_validation():
     result = CSVTest.get_validation()  # pylint: disable=unused-argument
     assert 1 == 1
     # assert result == "Test"          # pylint: disable=unused-argument
-
 
 # def test_writeToLog():
 #    result = CSVTest.writeToLog()
