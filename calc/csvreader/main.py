@@ -10,11 +10,13 @@ from calc.calculator import Calculator
 # pylint: disable-all
 
 # Global Variables
-ADDITION_OP = 'addition'
-FILE = "\\test_data\\" + ADDITION_OP + '.csv'
+OPERATION = 'Default Operation'
+FILE = "\\test_data\\" + OPERATION + '.csv'
 DIRECTORY = os.path.abspath(FILE)
-FILE_LIST = ["default"]
+FILE_LIST = ["Default List Value"]
 FILE_RECORD_COUNT = 100
+FILE_LOOPER = 500
+FILE_NAME = "Default File Name"
 
 
 class CSVTest:
@@ -23,15 +25,28 @@ class CSVTest:
     @staticmethod
     def get_files():
         """Looks in the Directory for Files"""
-        global FILE_LIST
+        CSVTest.reset_parameters()
+        global FILE_LIST, FILE_RECORD_COUNT
         for filename in os.listdir(os.getcwd() + "\\test_data"):
             FILE_LIST.append(filename)
+        CSVTest.set_record_count()
+        CSVTest.set_operation()
         return FILE_LIST
 
     @staticmethod
     def get_file_list():
         """Returns the global file list"""
         return FILE_LIST
+
+    @staticmethod
+    def reset_parameters():
+        """Rests all counters for loops"""
+        CSVTest.reset_file_list()
+        CSVTest.reset_record_count()
+        CSVTest.rest_file_looper()
+        CSVTest.reset_operation()
+        print("Parameters reset")
+        return True
 
     @staticmethod
     def reset_file_list():
@@ -48,15 +63,65 @@ class CSVTest:
         return True
 
     @staticmethod
+    def get_record_count():
+        """Returns the global number of Files in Input"""
+        global FILE_RECORD_COUNT
+        return FILE_RECORD_COUNT
+
+    @staticmethod
+    def set_record_count():
+        """Returns the number of files in list"""
+        global FILE_RECORD_COUNT
+        FILE_RECORD_COUNT = len(CSVTest.get_file_list())
+        return FILE_RECORD_COUNT
+
+    @staticmethod
+    def get_file_looper():
+        """Gets the global File Looper variable"""
+        global FILE_LOOPER
+        return FILE_LOOPER
+
+    @staticmethod
+    def rest_file_looper():
+        """Resets the Global Looper to zero"""
+        global FILE_LOOPER
+        FILE_LOOPER = 0
+        return FILE_LOOPER
+
+    @staticmethod
+    def loop_files():
+        """Increments place in the File List"""
+        global FILE_LOOPER
+        FILE_LOOPER = FILE_LOOPER + 1
+        return FILE_LOOPER
+
+    @staticmethod
     def get_operation():
         """Returns the Operation of the File at Record Count"""
-        global FILE_LIST
-        if len(FILE_LIST) == 0:
-            next_op = "Operation Undefined"
+        global OPERATION
+        return OPERATION
+
+    @staticmethod
+    def set_operation():
+        """Sets the Operation of the File at Looper"""
+        global OPERATION, FILE_NAME
+        count = CSVTest.get_record_count()
+        if count == 0:
+            OPERATION = "No Files: Operation Undefined"
+            return OPERATION
         else:
-            next_file = FILE_LIST[FILE_RECORD_COUNT]
-            next_op = next_file[: -4]
-        return next_op
+            list = CSVTest.get_file_list()
+            loop = CSVTest.get_file_looper()
+            FILE_NAME = list[loop]
+            OPERATION = FILE_NAME[: -4]
+        return OPERATION
+
+    @staticmethod
+    def reset_operation():
+        """Rests the Operation Flag back to default"""
+        global OPERATION
+        OPERATION = "Default Operation"
+        return OPERATION
 
     @staticmethod
     def return_loop_count():
@@ -64,6 +129,18 @@ class CSVTest:
         global FILE_RECORD_COUNT
         new_count = FILE_RECORD_COUNT + 1
         return new_count
+
+    @staticmethod
+    def get_file_name():
+        """Gets the file name at the next loop count"""
+        global FILE_NAME
+        return FILE_NAME
+
+    @staticmethod
+    def set_next_file_name():
+        global FILE_NAME
+        FILE_NAME = CSVTest.get_file_list()[CSVTest.get_file_looper()]
+        return FILE_NAME
 
     @staticmethod
     def get_file_path():
@@ -89,28 +166,45 @@ class CSVTest:
     @staticmethod
     def create_tuple():
         """Creates a tuple from the dataframe"""
-        processed_list = CSVTest.get_tuples(CSVTest.do_iteration(CSVTest.create_panda_df()))
-        return processed_list
+        input_tuple = CSVTest.get_tuples(CSVTest.do_iteration(CSVTest.create_panda_df()))
+        return input_tuple
 
     @staticmethod
     def create_panda_df():
         """Creates a dataframe from an input file"""
-        global FILE_LIST
-        global DIRECTORY
-        # filename = os.path.abspath(FILE_LIST[0])
-        file = FILE_LIST[0]
-        file_name = os.path.abspath('test_data')
-        new_file_name = file_name + "\\" + file
-        data_frame = pandas.read_csv(new_file_name,
+        # noinspection PyGlobalUndefined
+        global DATA_FRAME
+        file = CSVTest.get_file_name()
+        test_data_path = os.path.abspath('test_data')
+        new_file_path = test_data_path + "\\" + file
+        data_frame = pandas.read_csv(new_file_path,
                                      header=0,
                                      names=['Value_1', 'Value_2', 'Result'])
+        DATA_FRAME = data_frame
         return data_frame
+
+    @staticmethod
+    def get_data_frame():
+        """Helper for getting DF"""
+        # noinspection PyGlobalUndefined
+        global DATA_FRAME
+        return DATA_FRAME
 
     @staticmethod
     def do_iteration(data_frame):
         """Creates the Dataframe Rows from DF"""
+        # noinspection PyGlobalUndefined
+        global DATA_FRAME_ROWS
         dataframe_rows = data_frame.iterrows()
+        DATA_FRAME_ROWS = dataframe_rows
         return dataframe_rows
+
+    @staticmethod
+    def get_data_frame_rows():
+        """Retrieves a DF global variable for subsequent processes"""
+        # noinspection PyGlobalUndefined
+        global DATA_FRAME_ROWS
+        return DATA_FRAME_ROWS
 
     @staticmethod
     def get_tuples(dataframe_rows):
@@ -163,37 +257,43 @@ class CSVTest:
         return str(local_time)
 
     @staticmethod
-    def get_list_sums():
+    def create_list_calculations():
         """Gets the tuple of sums"""
+        # noinspection PyGlobalUndefined
+        global CALCULATIONS_LIST
         if CSVTest.get_operation() == 'addition':
-            sums = list(map(CSVTest.parse_tuple_addition, CSVTest.create_tuple()))
-            print("Addition Parsing Triggered")
-            return sums
+            calculations = list(map(CSVTest.parse_tuple_addition, CSVTest.create_tuple()))
+            print("Addition Called")
         elif CSVTest.get_operation() == 'subtraction':
-            sums = list(map(CSVTest.parse_tuple_subtraction, CSVTest.create_tuple()))
-            print("Subtraction Parsing Triggered")
-            return sums
+            calculations = list(map(CSVTest.parse_tuple_subtraction, CSVTest.create_tuple()))
+            print("Subtraction Called")
         elif CSVTest.get_operation() == 'multiplication':
-            sums = list(map(CSVTest.parse_tuple_multiplication, CSVTest.create_tuple()))
-            print("Multiplication Parsing Triggered")
-            return sums
+            calculations = list(map(CSVTest.parse_tuple_multiplication, CSVTest.create_tuple()))
+            print("Multiplication Called")
         elif CSVTest.get_operation() == 'division':
-            sums = list(map(CSVTest.parse_tuple_division, CSVTest.create_tuple()))
-            print("Division Parsing Triggered")
-            return sums
+            calculations = list(map(CSVTest.parse_tuple_division, CSVTest.create_tuple()))
+            print("Division Called")
         else:
-            sums = "error"
+            calculations = "error"
             with open('ERROR_log.csv', 'w') as csv_file:
                 csv_error_writer = csv.writer(csv_file, delimiter=',')
                 csv_error_writer.writerow([CSVTest.get_time(),
                                            CSVTest.get_operation,
                                            'Operation Undefined'])
-        return sums
+        CALCULATIONS_LIST = calculations
+        return calculations
+
+    @staticmethod
+    def get_list_of_calculations():
+        """Retrieves a DF global variable for subsequent processes"""
+        # noinspection PyGlobalUndefined
+        global CALCULATIONS_LIST
+        return CALCULATIONS_LIST
 
     @staticmethod
     def get_validation():
         """Gets List of Validation for Calculations"""
-        validation = list(map(CSVTest.compare_calc_with_results, CSVTest.get_list_sums()))
+        validation = list(map(CSVTest.compare_calc_with_results, CSVTest.create_list_calculations()))
         return validation
 
     @staticmethod
@@ -210,13 +310,13 @@ class CSVTest:
             csv_writer = csv.writer(csv_file, delimiter=',')
             csv_writer.writerow(['Timestamp', 'FileName', 'Record #',
                                  'Operation', 'CalcResult', 'Flag'])
-            loop_count = len(CSVTest.create_panda_df())
+            loop_count = len(CSVTest.get_data_frame())
+            calc_list = CSVTest.get_list_of_calculations()
             for i in range(loop_count):
-                # range(len(CSVTest.createPandaDF())):
-                calculated, provided = CSVTest.get_list_sums()[i]
+                calculated, provided = calc_list[i]
                 if calculated != 'ZeroDivisionError':
                     csv_writer.writerow(
-                        [CSVTest.get_time(), FILE_LIST[i - 1], CSVTest.add_record(i),
+                        [CSVTest.get_time(), FILE_NAME, CSVTest.add_record(i),
                          CSVTest.get_operation(), calculated, CSVTest.get_validation()[i]])
                 elif calculated == 'ZeroDivisionError':
                     csv_writer.writerow(
@@ -231,11 +331,14 @@ class CSVTest:
 
                 else:
                     csv_writer.writerow(["Done"])
-
             return "Successfully Written"
 
     @staticmethod
     def move_to_done():
         """This method moves files to the done folder"""
-        shutil.move(FILE, os.path.abspath(FILE_LIST[FILE_RECORD_COUNT]), copy_function=copy2)
-        return 'True'
+        # current = os.path.abspath(OPERATION + ".csv")
+        # file_done =
+        shutil.move("C:\\Users\\svois\\PycharmProjects\\calc2\\tests\\test_data\\" + OPERATION + ".csv",
+                    "C:\\Users\\svois\\PycharmProjects\\calc2\\tests\\done\\" + OPERATION + ".csv",
+                    copy_function=copy2)
+        return "Moved to Done"
