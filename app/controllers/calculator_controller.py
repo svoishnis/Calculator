@@ -22,6 +22,6 @@ class CalculatorController(ControllerBase):
             return render_template('result.html', value1=value1, value2=value2, operation=operation, result=result)
         return render_template('calculator2.html', error=error)
 
-        @staticmethod
-        def get():
-            return render_template('calculator2.html')
+    @staticmethod
+    def get():
+        return render_template('calculator2.html')
