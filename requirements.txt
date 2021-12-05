@@ -22,3 +22,5 @@ numpy~=1.21.4
 wrapt~=1.13.3
 coverage~=6.1.1
 pyparsing~=2.4.7
+Flask
+uwsgi
