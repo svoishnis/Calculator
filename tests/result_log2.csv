@@ -1,0 +1,15 @@
+Timestamp,FileName,Record #,Operation,CalcResult,Flag
+Fri Dec  3 19:22:18 2021,addition.csv,1,addition,3.0,True
+Fri Dec  3 19:22:18 2021,addition.csv,2,addition,5.0,True
+Fri Dec  3 19:22:18 2021,addition.csv,3,addition,7.0,True
+Fri Dec  3 19:22:18 2021,addition.csv,4,addition,9.0,True
+Fri Dec  3 19:22:18 2021,addition.csv,5,addition,11.0,True
+Fri Dec  3 19:22:18 2021,addition.csv,6,addition,13.0,True
+Fri Dec  3 19:22:18 2021,addition.csv,7,addition,15.0,True
+Fri Dec  3 19:22:18 2021,addition.csv,8,addition,17.0,True
+Fri Dec  3 19:22:18 2021,addition.csv,9,addition,19.0,True
+Fri Dec  3 19:22:18 2021,addition.csv,10,addition,21.0,True
+Fri Dec  3 19:22:18 2021,addition.csv,11,addition,23.0,True
+Fri Dec  3 19:22:18 2021,addition.csv,12,addition,25.0,True
+Fri Dec  3 19:22:18 2021,addition.csv,13,addition,27.0,True
+Fri Dec  3 19:22:18 2021,addition.csv,14,addition,3.0,False
