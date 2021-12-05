@@ -7,8 +7,10 @@ class Division(Calculation):
 
     def get_result(self):
         """get the quotient results"""
-        result = 100.0
-        for value in self.values:
+        result = 1.0
+        for value in self.values[:1]:
+            result = value
+        for value in self.values[1:]:
             if value == 0:
                 return "ZeroDivisionError"
             result = result / value
