@@ -215,13 +215,13 @@ class CSVTest:
     @staticmethod
     def parse_tuple_addition(my_tuple):
         """Parses the tuple to the addition method"""
-        Calculator.add_numbers(my_tuple[0:2])
+        Calculator.addition(my_tuple[0:2])
         return Calculator.get_last_result_value(), my_tuple[2]
 
     @staticmethod
     def parse_tuple_subtraction(my_tuple):
         """Parses the tuple to the subtraction method"""
-        Calculator.subtract_numbers(my_tuple[0:2])
+        Calculator.subtraction(my_tuple[0:2])
         # Investigate Issue - temp fix'''
         one = my_tuple[0]
         two = my_tuple[1]
@@ -232,13 +232,13 @@ class CSVTest:
     @staticmethod
     def parse_tuple_multiplication(my_tuple):
         """Parses the tuple to the multiplication method"""
-        Calculator.multiply_numbers(my_tuple[0:2])
+        Calculator.multiplication(my_tuple[0:2])
         return Calculator.get_last_result_value(), my_tuple[2]
 
     @staticmethod
     def parse_tuple_division(my_tuple):
         """Parses the tuple to the division method"""
-        Calculator.divide_numbers(my_tuple[0:2])
+        Calculator.division(my_tuple[0:2])
         return Calculator.get_last_result_value(), my_tuple[2]
 
     @staticmethod

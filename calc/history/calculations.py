@@ -47,25 +47,25 @@ class Calculations:
         return Calculations.history.append(calculation)
 
     @staticmethod
-    def add_addition_calculation(values):
+    def add_addition_calculation_to_history(values):
         """ Add a addition calculation to the history"""
         Calculations.add_calculation(Addition.create(values))
         return True
 
     @staticmethod
-    def add_subtraction_calculation(values):
+    def add_subtraction_calculation_to_history(values):
         """create a subtraction object to history using factory method create"""
         Calculations.add_calculation(Subtraction.create(values))
         return True
 
     @staticmethod
-    def add_multiplication_calculation(values):
+    def add_multiplication_calculation_to_history(values):
         """Add a multiplication object to history using factory method create"""
         Calculations.add_calculation(Multiplication.create(values))
         return True
 
     @staticmethod
-    def add_division_calculation(values):
+    def add_division_calculation_to_history(values):
         """create an addition and add object to history using factory method create"""
         Calculations.add_calculation(Division.create(values))
         # Get the result of the calculation
