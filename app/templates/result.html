@@ -18,9 +18,10 @@
         {% endfor %}
     {% endif %}
 {% endwith %}
-    <strong>Value 1: </strong> {{ value1 }} <br>
-    <strong>Value 2: </strong> {{ value2 }} <br>
-    <strong>Operation: </strong> {{ operation }} <br>
-    <strong>Result: </strong> {{ result }}
-
+    <div id="result">
+        <h4><strong>Value 1: </strong> {{ value1 }} <br></h4>
+        <h4><strong>Value 2: </strong> {{ value2 }} <br></h4>
+        <h4><strong>Operation: </strong> {{ operation }} <br></h4>
+        <h4><strong>Result: </strong> {{ result }}</h4>
+    </div>
 {% endblock %}

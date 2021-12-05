@@ -1,7 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+}
+
 body {
     font-size: 200%;
+    background-image: linear-gradient(rgba(4,9,30,0.5),rgba(4,9,30,0.5)),url(../images/pexels-karolina-grabowska-5412096.jpg);
+    background-size: cover;
+    color: coral;
+}
+
+body nav{
+    padding-left: 50px;
+    font-weight: bold;
+
 }
 
 body h1{
     color: coral;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-size: 60px;
+    text-align: left;
+}
+
+body a{
+    color: white;
+}
+
+body p{
+    color: white;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-size: 25px;
+    text-align: left;
+}
+
+body input{
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-left: 25px;
+    color: black;
+    font-size: 18px;
+}
+
+body legend{
+    padding-top: 5px;
+   color: white;
+    font-size: 23px;
+}
+
+body label{
+    padding-left: 20px;
+    color: white;
+    font-size: 18px;
+}
+
+body form{
+   padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 5px;
+}
+
+body strong{
+    color: white;
+}
+
+body h4{
+    font-size: 20px;
+    color: coral;
+}
+
+body h4 strong{
+    color: white;
+}
+
+result{
+    color: coral;
+}
+
+body fieldset{
+    padding-left: 25px;
+    padding-bottom: 5px;
+}
+
+body resultsection{
+    padding-left: 25px;
+}
+
+footer{
+   padding-left: 25px;
+    padding-top: 500px;
+    text-align: center;
 }
