@@ -1,5 +1,7 @@
 """A simple flask web app"""
 from flask import Flask
+
+from app.controllers.csv_calc_controller import CsvCalcController
 from app.controllers.index_controller import IndexController
 from app.controllers.calculator_controller import CalculatorController
 
@@ -29,3 +31,12 @@ def index():
 @app.route("/calculator", methods=['GET', 'POST'])
 def calculator():
     return CalculatorController.index()
+
+
+@app.route("/csv_calc", methods=['GET'])
+def csv_calc_get():
+    return CsvCalcController.get()
+
+
+def csv_calc():
+    return CsvCalcController.index()

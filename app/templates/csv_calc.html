@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .important {
+            color: #336699;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+
+    <h1>My CSV Calculator</h1>
+     {% if error %}
+        <div class="alert alert-danger error" role="alert">
+             {{ error }}
+        </div>
+      {% endif %}
+   <div class="mb-3 row">
+    <form action="upload.py" method="POST" enctype="multipart/form-data">
+       <label> Upload a CSV File to Validate:</label>
+       <br><br>
+    <input type="file" class="file-select" accept="text/csv" name="filename" id="fileToUpload">
+       <br> <br>
+    <input type="submit" value="Upload CSV" name="submit">
+    </form>
+   </div>
+{% endblock %}
