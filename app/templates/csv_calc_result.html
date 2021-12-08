@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+    <!--suppress HtmlDeprecatedAttribute, CssUnusedSymbol -->
+<style type="text/css">
+        .important { color: #336699; }
+    </style>
+{% endblock %}
+{% block content %}
+     <h1>CSV Calculation Result</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<!--    <div id="csv_calc_result">-->
+<!--        <h4><strong>Value 1: </strong> {{ value1 }} <br></h4>-->
+<!--        <h4><strong>Value 2: </strong> {{ value2 }} <br></h4>-->
+<!--        <h4><strong>Operation: </strong> {{ operation }} <br></h4>-->
+<!--        <h4><strong>Result: </strong> {{ result }}</h4>-->
+<!--    </div>-->
+
+
+
+<!--<table class ="table table-light table-hover table-striped">-->
+<!--    <thead class="thead">-->
+<!--    <tr>-->
+<!--        <th scope="col">Record Number</th>-->
+<!--        <th scope="col">Value 1</th>-->
+<!--        <th scope="col">Value 2</th>-->
+<!--        <th scope="col">Operation</th>-->
+<!--        <th scope="col">Result</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr>-->
+<!--        <th scope="row">1</th>-->
+<!--        <td>{{ value1 }}</td>-->
+<!--        <td>{{ value2 }}</td>-->
+<!--        <td>{{ operation }}</td>-->
+<!--        <td>{{ result }}</td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
+
+<p> "THIS IS A TEST"</p>
+{% endblock %}

@@ -33,10 +33,17 @@ def calculator():
     return CalculatorController.index()
 
 
-@app.route("/csv_calc", methods=['GET'])
+@app.route("/csv_calc", methods=['POST'])
+def csv_calc_post():
+    return CsvCalcController.post()
+
+
+@app.route("/csv_calc", methods=['GET', 'POST'])
 def csv_calc_get():
     return CsvCalcController.get()
 
 
 def csv_calc():
     return CsvCalcController.index()
+
+

@@ -17,12 +17,13 @@
         </div>
       {% endif %}
    <div class="mb-3 row">
-    <form action="upload.py" method="POST" enctype="multipart/form-data">
+       <form action="/csv_calc" method="POST" enctype="multipart/form-data">
        <label> Upload a CSV File to Validate:</label>
        <br><br>
-    <input type="file" class="file-select" accept="text/csv" name="filename" id="fileToUpload">
-       <br> <br>
-    <input type="submit" value="Upload CSV" name="submit">
+        <input type="file" class="file-select" accept="text/csv" name="filename" id="fileToUpload" required="required" style="color: coral">
+       <br> <br> <br>
+
+    <input type="submit" value="Submit" name="submit">
     </form>
    </div>
 {% endblock %}
