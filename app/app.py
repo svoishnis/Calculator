@@ -47,3 +47,5 @@ def csv_calc():
     return CsvCalcController.index()
 
 
+if __name__ == "__main__":
+    app.run(debug=True)
