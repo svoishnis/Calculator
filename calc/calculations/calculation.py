@@ -7,7 +7,10 @@ class Calculation:
     # pylint: disable=too-few-public-methods
     def __init__(self, values: tuple):
         """ constructor method"""
-        self.values = Calculation.convert_args_to_tuple_float(values)
+        try:
+            self.values = Calculation.convert_args_to_tuple_float(values)
+        except ValueError:
+            print("Error not numeric")
 
     @classmethod
     def create(cls, values: tuple):
