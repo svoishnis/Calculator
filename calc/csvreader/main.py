@@ -34,6 +34,16 @@ class CSVTest:
         return FILE_LIST
 
     @staticmethod
+    def get_file(filename):
+        """Looks in the Directory for Files"""
+        CSVTest.reset_parameters()
+        global FILE_LIST, FILE_RECORD_COUNT
+        FILE_LIST.append(filename)
+        CSVTest.set_record_count()
+        CSVTest.set_operation()
+        return FILE_LIST
+
+    @staticmethod
     def get_file_list():
         """Returns the global file list"""
         return FILE_LIST

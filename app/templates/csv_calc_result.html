@@ -8,16 +8,14 @@
     </style>
 {% endblock %}
 {% block content %}
-     <h1>CSV Calculation Result</h1>
+    <h1>CSV Calculation Result</h1>
 
     <div id="calc_result">
         <label>{{ success }}<br></label>
         <label>{{ operation }}</label>
 
         <h4><strong>Path: </strong> {{ path }} <br></h4>
-<!--        <h4><strong>Value 2: </strong> {{ value2 }} <br></h4>-->
-<!--        <h4><strong>Operation: </strong> {{ operation }} <br></h4>-->
-<!--        <h4><strong>Result: </strong> {{ result }}</h4>-->
+
 
     </div>
 
@@ -29,6 +27,39 @@
             </div>
         {% endfor %}
     {% endif %}
-{% endwith %}
+    {% endwith %}
+
+    <div id="data">
+        <h4><strong>Value 1: </strong> {{ value1 }} <br></h4>
+        <h4><strong>Value 2: </strong> {{ value2 }} <br></h4>
+        <h4><strong>Operation: </strong> {{ operation }} <br></h4>
+        <h4><strong>Result: </strong> {{ result }}</h4>
+    </div>
+
+
+
+<table class ="table table-light table-hover table-striped">
+    <thead class="thead">
+    <tr>
+        <th scope="col">Record Number</th>
+        <th scope="col">Value 1</th>
+        <th scope="col">Value 2</th>
+        <th scope="col">Operation</th>
+        <th scope="col">Result</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for value1, value2, result in rows %}
+    <tr>
+        <th scope="row">{{loop.index}}</th>
+        <td>{{ value1 }}</td>
+        <td>{{ value2 }}</td>
+        <td>{{ operation }}</td>
+        <td>{{ result }}</td>
+    </tr>
+    {% endfor %}}
+    </tbody>
+</table>
+
 <p> "THIS IS A TEST"</p>
 {% endblock %}
