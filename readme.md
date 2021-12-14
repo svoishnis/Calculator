@@ -13,4 +13,4 @@ setup.py is a config file for pytest
 
 [Part 1 & 2 for Flask](https://github.com/svoishnis/calc2/blob/flask/app/static/images/Flask%20HW%20Assignment.png)
 
-[Beautiful Tables](https://github.com/svoishnis/calc2/blob/flask/app/static/images/Beautiful%Tables%Assignment.png)
+[Beautiful Tables](https://github.com/svoishnis/calc2/blob/flask/app/static/images/Beautiful%20Tables%20Assignment.png)
