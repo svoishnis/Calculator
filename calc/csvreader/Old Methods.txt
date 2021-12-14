@@ -14,9 +14,9 @@
 # print("Beginning CSV Test")
 #
 #
-# def parseDataFrameRow(row):
-#     """Take a row and reformat into a tuple"""
-#     mTuple = row[1]
+# def parseDataFrameRow(csv_row):
+#     """Take a csv_row and reformat into a tuple"""
+#     mTuple = csv_row[1]
 #     Value_1 = mTuple.Value_1
 #     Value_2 = mTuple.Value_2
 #     Result = mTuple.Result

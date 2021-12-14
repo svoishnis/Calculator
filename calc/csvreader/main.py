@@ -166,7 +166,7 @@ class CSVTest:
 
     @staticmethod
     def parse_data_frame_row(row):
-        """Take a row and reformat into a tuple"""
+        """Take a csv_row and reformat into a tuple"""
         my_tuple = row[1]
         Value_1 = my_tuple.Value_1
         Value_2 = my_tuple.Value_2

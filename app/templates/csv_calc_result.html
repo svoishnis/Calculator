@@ -12,11 +12,6 @@
 
     <div id="calc_result">
         <label>{{ success }}<br></label>
-        <label>{{ operation }}</label>
-
-        <h4><strong>Path: </strong> {{ path }} <br></h4>
-
-
     </div>
 
     {% with messages = get_flashed_messages() %}
@@ -30,7 +25,7 @@
     {% endwith %}
 
     <div id="result">
-        <h4><strong>Timestamp: </strong> {{ timestamp }} <br></h4>
+        <h4><br></br><strong>Timestamp: </strong> {{ timestamp }} <br></h4>
         <h4><strong>Operation: </strong> {{ operation }} <br></h4>
     </div>
 
@@ -42,18 +37,20 @@
         <th scope="col">Value 2</th>
         <th scope="col">Operation</th>
         <th scope="col">Result</th>
+        <th scope="col">Calculated</th>
         <th scope="col">Validation</th>
     </tr>
     </thead>
     <tbody>
-    {% for value1, value2, result in rows %}
+    {% for value1, value2, operation, result, calculated, validate in rows %}
     <tr>
         <th scope="row">{{loop.index}}</th>
         <td>{{ value1 }}</td>
         <td>{{ value2 }}</td>
         <td>{{ operation }}</td>
         <td>{{ result }}</td>
-        <td>Test</td>
+        <td>{{ calculated }}</td>
+        <td>{{ validate }}</td>
     </tr>
     {% endfor %}
     </tbody>
