@@ -76,21 +76,74 @@ body h4 strong{
     color: white;
 }
 
-result{
-    color: coral;
-}
 
 body fieldset{
     padding-left: 25px;
     padding-bottom: 5px;
 }
 
-body resultsection{
-    padding-left: 25px;
-}
 
 footer{
    padding-left: 25px;
-    padding-top: 500px;
+    padding-top: 200px;
     text-align: center;
 }
+
+/*-------sixthsection------*/
+.sixthsection{
+    width: 100%;
+    text-align: center;
+    padding-top: 50px;
+    position: relative;
+}
+.sixthsection:before{
+    margin-top: 100px;
+}
+
+.sixthsection h1{
+    text-align: center;
+    color: coral;
+    font-weight: bolder;
+}
+
+.sixthsection h2{
+    text-align: center;
+}
+
+.sixthsection-col{
+    flex-basis: 30%;
+
+    text-align: left;
+    overflow: hidden;
+    list-style-type: none;
+}
+
+.sixthsection h3{
+    color: coral;
+    font-weight: bolder;
+    font-size: 25px;
+    padding: 20px;
+}
+.sixthsection p {
+    line-height: 40px;
+    font-size: 20px;
+    text-align: left;
+}
+
+pre code {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 20px;
+    color: black;
+}
+
+code p {
+    color: black;
+}
+
+
+
+
+
+

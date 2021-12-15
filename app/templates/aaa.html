@@ -16,7 +16,51 @@
              {{ error }}
         </div>
       {% endif %}
-   <div class="mb-3 row">
+   <section class="sixthsection" id="fframe">
+    <h1>AAA : Unit Testing<br><br></h1>
+    <div class="sixthsection-con">
+        <div class="sixthsection-row">
+            <div class="sixthsection-col">
+                    <h2>A unit test is a method that instantiates a small portion of an application and verifies its behavior independently from other parts. </h2>
 
-   </div>
+                    <h3>Typical unit tests contains 3 phases:</h3>
+                    <p> - First, it initializes a small piece of an application it wants to test
+                        <br> - Then it applies some condition to the system under test
+                        <br>- Finally, it observes the resulting behavior
+                    </p>
+
+                <p><br>If the observed behavior is as expected, the unit test passes, otherwise, it fails, indicating that there is a problem somewhere in the system under test.</p>
+
+                <p>These three unit test phases are also known as Arrange, Act and Assert, or simply AAA.</p>
+
+                <h3>Unit tests are designed to test state-based or interaction-based code logic:</h3>
+                    <p>Verifying that the system under test produces correct results, or that its resulting state is correct, is called state-based unit testing.
+                    <br>Verifying that it properly invokes certain methods is called interaction-based unit testing.
+                    </p>
+
+                <h3><br>Test Method:</h3>
+
+                    <p>def test_calculator_subtract():
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;""" In the Arrange phase, we create and set up a system under test.This can be empty and is not mandatory"""
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;calc = Calculator()
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;"""The Act phase is where we poke the system under test, usually by invoking a method."""
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;calc.subtract_number(1)
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;"""The Assert phase makes our unit test pass or fail."""
+                        <br>assert calc.get_result() == -1
+                    </p>
+
+
+                        <h3><br>Unit testing principles demand that a good test is:</h3>
+                            <p> - Easy to write
+                            <br>- Readable
+                            <br>- Reliable
+                            <br>- Fast
+                            <br>- Truly unit, not integration
+                            </p>
+
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

@@ -10,13 +10,77 @@
 {% endblock %}
 {% block content %}
 
-    <h1>Calculator Info</h1>
+    <h1>Calculator Information</h1>
      {% if error %}
         <div class="alert alert-danger error" role="alert">
              {{ error }}
         </div>
       {% endif %}
-   <div class="mb-3 row">
+   <section class="sixthsection" id="fframe">
+    <h1>What is Unit Testing?<br><br></h1>
+       <p>Each of the four principles of object-oriented programming(Encapsulation, Abstraction, Inheritance, and Polymorphism can be found in the Calculator Project</p>
+            <div class="sixthsection-col">
+                <h3>Encapsulation</h3>
+                <p>Encapsulation is when each object keeps its state private, inside a class. Other objects can only call a list of public functions, known as methods, and will not have direct access to this state unless permission was explicitly allowed.</p>
+                <p><br>An example of encapsulation in the calculator code is when the calculation class calls the calculations class to use the history tuple. The calculation class would not have access to this object without permission. </p>
+                <p> Example code:
+                    <pre>
+                        <code>
+                            <br> class Calculations:
+                            <br> &nbsp; &nbsp; def add_calculation(calculation):
+                                <br>&nbsp; &nbsp; &nbsp; &nbsp;""" Add a specific calculation to the history"""
+                            <br>&nbsp; &nbsp; return Calculations.history.append(calculation)
+                        </code>
+                    </pre>
+                </p>
+                <h3><br>Abstraction</h3>
+                <p>Abstraction can be thought of as a natural extension of encapsulation.</p>
+                <p><br></p>
+                <p>Abstraction means that each object only exposes a high-level mechanism for using it. All implementation details are hidden and only relevant operations are visible to the objects that use them</p>
+                <p><br>The example in the calculator class is when calculator test calls the operation functions. What is hidden from view is that the calculation uses methods from different classes in when invoked and the result is stored along with the actual calculation happening. </p>
 
-   </div>
+                <p> Example code:
+                <pre>
+                    <code>
+                        <br>def test_calculator_add_static(clear_history_fixture):
+                        <br>assert Calculator.add_numbers(1.0,2.0,3.0) == 6.0
+                        <br>
+                        <br> class Calculator:
+                        <br> &nbsp; &nbsp; def add_numbers(*args):
+                        <br>&nbsp; &nbsp; &nbsp; &nbsp;calculation = Addition(args)
+                        <br>&nbsp; &nbsp; &nbsp; &nbsp;Calculations.add_calculation(calculation)
+                        <br>&nbsp; &nbsp; return calculation.get_result()
+                    </code>
+                </pre>
+                </p>
+                <h3><br>Inheritance</h3>
+                <p>Inheritance is when you create a (child) class by deriving from another (parent) class. Thus creating a hierarchy. The child class reuses all fields and methods of the parent class (common part) and can implement its own (unique part).</p>
+
+                <p><br>An example of inheritance in the calculator project is where we have the calculation class being called by the operation classes like Addition, Subtraction etc in order to preserve the values for the calculations.</p>
+                <p>
+                <pre>
+                    <code>
+                        <br>class Calculator:
+                        <br> &nbsp; &nbsp; def add_number(value_a, value_b):
+                        <br>&nbsp; &nbsp; &nbsp; &nbsp;addition = Addition.create(value_a,value_b)
+                        <br>&nbsp; &nbsp; &nbsp; &nbsp;Calculator.add_calculation_to_history(addition)
+                        <br>&nbsp; &nbsp; return Calculator.get_result_of_last_calculation_added_to_history()
+                        <br>
+                        <br>class Addition(Calculation):
+                        <br> &nbsp; &nbsp; def get_result(self):
+                        <br>&nbsp; &nbsp; &nbsp; &nbsp;sum_of_values = 0.0
+                        <br>&nbsp; &nbsp; &nbsp; &nbsp;for value in self.values:
+                        <br>&nbsp; &nbsp; &nbsp; &nbsp;sum_of_values = value + sum_of_values
+                        <br> &nbsp; &nbsp; return sum_of_values
+                    </code>
+                </pre>
+                </p>
+                <h3><br>Polymorphism</h3>
+                <p>Polymorphism is when we have a parent class and a few child classes which inherit from it. This can be implemented  A collection or list — which contains a mix of all these classes, or through a method implemented for the parent class.</p>
+                <p><br></p>
+                <p><br>Polymorphism gives a way to use a class exactly like its parent so there is no confusion with mixing types. Each child class keeps its own methods as they are.</p>
+
+                <p><br>Since there are different methods or operations that inherit from the calculation class this is also an example of polymorphism. Each method uses the values in a different ways in order to fulfill the purpose of each method. Example, some calculations are addition, subtraction, multiplication or division</p>
+    </div>
+</section>
 {% endblock %}
