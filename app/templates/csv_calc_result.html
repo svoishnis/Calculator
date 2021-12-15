@@ -25,9 +25,14 @@
     {% endwith %}
 
     <div id="result">
-        <h4><br></br><strong>Timestamp: </strong> {{ timestamp }} <br></h4>
-        <h4><strong>Operation: </strong> {{ operation }} <br></h4>
+        <h4><br>Timestamp: {{ timestamp }} <br></h4>
+        <h4>Operation: {{ operation }} <br></h4>
     </div>
+
+<div class="download" align="left">
+       <label> Download Result File:</label>
+        <a href= "/return-files/" target="_blank"><button class='btn btn-default' style="color: coral">Download</button></a>
+</div>
 
 <table class ="table table-light table-hover table-striped">
     <thead class="thead">
@@ -55,6 +60,4 @@
     {% endfor %}
     </tbody>
 </table>
-
-<p> "THIS IS A TEST"</p>
 {% endblock %}

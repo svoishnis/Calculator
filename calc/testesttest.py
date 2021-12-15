@@ -1,9 +1,11 @@
+import csv
 import time
 from calc.calculator import Calculator
 
 
 class CsvPostLogic:
     OPERATION_CSV = "test"
+    DATA = "Test Data"
 
     def convert_input_row_into_output_row(self, csv_row):
         """Methods coverts the input row into output row"""
@@ -50,3 +52,33 @@ class CsvPostLogic:
         current_time = time.time()
         local_time = time.ctime(current_time)
         return str(local_time)
+
+    @staticmethod
+    def read_file(f):
+        with open(f.filename, newline='') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            next(reader)
+            data = [tuple(line) for line in reader]
+        return data
+
+    @staticmethod
+    def store_output_data(my_tuple2):
+        global DATA
+        DATA = my_tuple2
+        return True
+
+    @staticmethod
+    def get_output_data():
+        global DATA
+        return DATA
+
+    @staticmethod
+    def write_to_file(my_tuple2):
+        with open('result.csv', mode='w') as result_file:
+            result_writer = csv.writer(result_file, delimiter=',',
+                                       escapechar='"', quoting=csv.QUOTE_NONE)
+            result_writer.writerow(['Timestamp: ' + CsvPostLogic.get_time()])
+            result_writer.writerow(['Operation: ' + CsvPostLogic.get_operation()])
+            for line in my_tuple2:
+                result_writer.writerow([line])
+        return True
