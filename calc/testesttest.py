@@ -63,9 +63,9 @@ class CsvPostLogic:
         return data
 
     @staticmethod
-    def store_output_data(my_tuple2):
+    def store_output_data(output, *args):
         global DATA
-        DATA = my_tuple2
+        DATA = output
         return True
 
     @staticmethod
@@ -81,8 +81,10 @@ class CsvPostLogic:
                                        escapechar='"', quoting=csv.QUOTE_NONE)
             header = ["Value 1", "Value 2", "Operation", "Result Provided", "Calculated Result", "Validation"]
             result_writer.writerow(header)
-            for value1, value2, operation, result, calculated, validate in DATA:
-                result_writer.writerow([value1, value2, operation, result, calculated, validate])
+            for row in CsvPostLogic.get_output_data():
+                result_writer.writerow(row)
             result_writer.writerow(['Timestamp: ' + CsvPostLogic.get_time()])
             result_writer.writerow(['Operation: ' + CsvPostLogic.get_operation()])
+            # CsvPostLogic.store_output_data(my_tuple2)
+            result_file.close()
         return True

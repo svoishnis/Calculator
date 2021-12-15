@@ -1,3 +1,17 @@
 Value 1,Value 2,Operation,Result Provided,Calculated Result,Validation
-Timestamp: Wed Dec 15 04:36:35 2021
+1,2,addition,3,3.0,Pass
+2,3,addition,5,5.0,Pass
+3,4,addition,7,7.0,Pass
+4,5,addition,9,9.0,Pass
+5,6,addition,11,11.0,Pass
+6,7,addition,13,13.0,Pass
+7,8,addition,15,15.0,Pass
+8,9,addition,17,17.0,Pass
+9,10,addition,19,19.0,Pass
+10,11,addition,21,21.0,Pass
+11,12,addition,23,23.0,Pass
+12,13,addition,25,25.0,Pass
+13,14,addition,27,27.0,Pass
+1,2,addition,400,3.0,Fail
+Timestamp: Wed Dec 15 22:34:12 2021
 Operation: addition
