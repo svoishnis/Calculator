@@ -55,7 +55,7 @@ def csv_calc():
 
 @app.route('/return-files/')
 def return_files():
-    CsvPostLogic.write_to_file(CsvPostLogic.get_output_data())
+    CsvPostLogic.write_to_file()
     try:
         return send_file('/home/myuser/result.csv',
                          attachment_filename='test.csv')

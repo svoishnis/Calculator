@@ -9,6 +9,7 @@ class CsvCalcController(ControllerBase):
 
     @staticmethod
     def get():
+        Calculations.clear_history()
         return render_template('csv_calc.html')
 
     @staticmethod
