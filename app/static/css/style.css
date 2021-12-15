@@ -6,7 +6,7 @@
 
 body {
     font-size: 200%;
-    background-image: linear-gradient(rgba(4,9,30,0.5),rgba(4,9,30,0.5)),url(../images/pexels-karolina-grabowska-5412096.jpg);
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(../images/pexels-karolina-grabowska-5412096.jpg);
     background-size: cover;
     color: coral;
 }
