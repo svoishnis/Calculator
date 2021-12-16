@@ -83,5 +83,10 @@ def aaa_get():
     return AAAController.get()
 
 
+@app.route("/api/data", methods=['GET'])
+def data():
+    return {'data': [user.to_dict() for user in User.query]}
+
+
 if __name__ == "__main__":
     app.run(debug=True)

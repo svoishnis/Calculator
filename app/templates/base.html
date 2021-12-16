@@ -50,6 +50,15 @@
     </div>
 </nav>
 
+{% block wait %}
+     <script type="text/javascript">
+        $('#content').css('opacity', 0);
+        $(window).load(function() {
+        $('#content').css('opacity', 1);
+        });
+    </script>
+{% endblock %}
+
 <div id="content">{% block content %}{% endblock %}</div>
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -58,12 +67,11 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>
 {% block scripts %}
-<script>
-    $(document).ready(function() {
-        $('#mydatatable').dataTable();
-} );
-
-</script>
+    <script>
+        $(document).ready(function() {
+            $('#mydatatable').dataTable();
+    } );
+    </script>
 {% endblock %}
 
 </body>

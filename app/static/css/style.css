@@ -78,7 +78,13 @@ body h4 strong{
 
 .dataTables_length label,
 .dataTables_filter label {
-  color: coral;
+    color: coral;
+}
+
+div.dataTables_length select {
+  color: green !important;
+  background-color: white !important;
+    width: 50px;
 }
 
 body fieldset{
@@ -112,11 +118,11 @@ footer{
 
 .sixthsection h2{
     text-align: center;
+    color: white;
 }
 
 .sixthsection-col{
     flex-basis: 30%;
-
     text-align: left;
     overflow: hidden;
     list-style-type: none;
@@ -127,11 +133,21 @@ footer{
     font-weight: bolder;
     font-size: 25px;
     padding: 20px;
+    text-align: left;
 }
 .sixthsection p {
     line-height: 40px;
     font-size: 20px;
     text-align: left;
+}
+
+.sixthsection li {
+    padding-left: 20px;
+    margin-left: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: left;
+    color: white;
 }
 
 pre code {
@@ -140,6 +156,7 @@ pre code {
   display: block;
   padding: 20px;
     color: black;
+    text-align: left;
 }
 
 code p {

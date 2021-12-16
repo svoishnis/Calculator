@@ -17,7 +17,7 @@
         </div>
       {% endif %}
    <section class="sixthsection" id="fframe">
-    <h1>What is Unit Testing?<br><br></h1>
+    <h1>Examples of OOO in the Calculator Project<br><br></h1>
        <p>Each of the four principles of object-oriented programming(Encapsulation, Abstraction, Inheritance, and Polymorphism can be found in the Calculator Project</p>
             <div class="sixthsection-col">
                 <h3>Encapsulation</h3>
@@ -39,19 +39,20 @@
                 <p>Abstraction means that each object only exposes a high-level mechanism for using it. All implementation details are hidden and only relevant operations are visible to the objects that use them</p>
                 <p><br>The example in the calculator class is when calculator test calls the operation functions. What is hidden from view is that the calculation uses methods from different classes in when invoked and the result is stored along with the actual calculation happening. </p>
 
-                <p> Example code:
-                <pre>
-                    <code>
-                        <br>def test_calculator_add_static(clear_history_fixture):
-                        <br>assert Calculator.add_numbers(1.0,2.0,3.0) == 6.0
-                        <br>
-                        <br> class Calculator:
-                        <br> &nbsp; &nbsp; def add_numbers(*args):
-                        <br>&nbsp; &nbsp; &nbsp; &nbsp;calculation = Addition(args)
-                        <br>&nbsp; &nbsp; &nbsp; &nbsp;Calculations.add_calculation(calculation)
-                        <br>&nbsp; &nbsp; return calculation.get_result()
-                    </code>
-                </pre>
+                <h3> Example code: </h3>
+                <p>
+                    <pre>
+                        <code>
+                            <br>def test_calculator_add_static(clear_history_fixture):
+                            <br>assert Calculator.add_numbers(1.0,2.0,3.0) == 6.0
+                            <br>
+                            <br> class Calculator:
+                            <br> &nbsp; &nbsp; def add_numbers(*args):
+                            <br>&nbsp; &nbsp; &nbsp; &nbsp;calculation = Addition(args)
+                            <br>&nbsp; &nbsp; &nbsp; &nbsp;Calculations.add_calculation(calculation)
+                            <br>&nbsp; &nbsp; return calculation.get_result()
+                        </code>
+                    </pre>
                 </p>
                 <h3><br>Inheritance</h3>
                 <p>Inheritance is when you create a (child) class by deriving from another (parent) class. Thus creating a hierarchy. The child class reuses all fields and methods of the parent class (common part) and can implement its own (unique part).</p>
