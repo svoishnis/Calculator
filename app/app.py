@@ -9,7 +9,7 @@ from app.controllers.index_controller import IndexController
 from app.controllers.calculator_controller import CalculatorController
 from app.controllers.ooo import OOOController
 from app.controllers.topic import TopicController
-from calc.testesttest import CsvPostLogic
+from calc.csvreader.csvfunctions import CsvPostLogic
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -81,11 +81,6 @@ def topic_get():
 @app.route("/aaa", methods=['GET'])
 def aaa_get():
     return AAAController.get()
-
-
-@app.route("/api/data", methods=['GET'])
-def data():
-    return {'data': [user.to_dict() for user in User.query]}
 
 
 if __name__ == "__main__":

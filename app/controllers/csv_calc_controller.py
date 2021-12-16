@@ -1,8 +1,7 @@
 import os
-import csv
 from flask import render_template, request
 from werkzeug.utils import secure_filename
-from calc.testesttest import CsvPostLogic
+from calc.csvreader.csvfunctions import CsvPostLogic
 from app.controllers.controller import ControllerBase
 
 

@@ -85,6 +85,5 @@ class CsvPostLogic:
                 result_writer.writerow(row)
             result_writer.writerow(['Timestamp: ' + CsvPostLogic.get_time()])
             result_writer.writerow(['Operation: ' + CsvPostLogic.get_operation()])
-            # CsvPostLogic.store_output_data(my_tuple2)
             result_file.close()
         return True

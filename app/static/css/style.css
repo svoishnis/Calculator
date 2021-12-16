@@ -76,16 +76,26 @@ body h4 strong{
     color: white;
 }
 
-.dataTables_length label,
+.dataTables_info {
+    color: white;
+}
+
 .dataTables_filter label {
     color: coral;
 }
 
 div.dataTables_length select {
-  color: green !important;
-  background-color: white !important;
+    color: green !important;
+    background-color: white !important;
     width: 50px;
+    display: inline;
 }
+
+.dataTables_filter input {
+   background-color: white !important;
+}
+
+
 
 body fieldset{
     padding-left: 25px;
