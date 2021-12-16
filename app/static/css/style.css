@@ -76,6 +76,10 @@ body h4 strong{
     color: white;
 }
 
+.dataTables_length label,
+.dataTables_filter label {
+  color: coral;
+}
 
 body fieldset{
     padding-left: 25px;

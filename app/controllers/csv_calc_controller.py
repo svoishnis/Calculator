@@ -31,4 +31,4 @@ class CsvCalcController(ControllerBase):
 
         return render_template('csv_calc_result.html', success=success,
                                operation=CsvPostLogic.get_operation(), rows=my_tuple2,
-                               timestamp=timestamp, file=path, test=output_data)
+                               timestamp=timestamp, file=path)
