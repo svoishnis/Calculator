@@ -1,17 +1,19 @@
 Value 1,Value 2,Operation,Result Provided,Calculated Result,Validation
-1,2,addition,3,3.0,Pass
-2,3,addition,5,5.0,Pass
-3,4,addition,7,7.0,Pass
-4,5,addition,9,9.0,Pass
-5,6,addition,11,11.0,Pass
-6,7,addition,13,13.0,Pass
-7,8,addition,15,15.0,Pass
-8,9,addition,17,17.0,Pass
-9,10,addition,19,19.0,Pass
-10,11,addition,21,21.0,Pass
-11,12,addition,23,23.0,Pass
-12,13,addition,25,25.0,Pass
-13,14,addition,27,27.0,Pass
-1,2,addition,400,3.0,Fail
-Timestamp: Thu Dec 16 02:17:15 2021
-Operation: addition
+1,2,division,0.5,0.5,Pass
+2,3,division,0.6666666666666666,0.6666666666666666,Pass
+3,4,division,0.75,0.75,Pass
+4,5,division,0.8,0.8,Pass
+5,6,division,0.8333333333333334,0.8333333333333334,Pass
+6,7,division,0.8571428571428571,0.8571428571428571,Pass
+7,8,division,0.875,0.875,Pass
+8,9,division,0.88,0.8888888888888888,Fail
+9,10,division,0.9,0.9,Pass
+10,11,division,0.9090909090909091,0.9090909090909091,Pass
+11,12,division,0.9166666666666666,0.9166666666666666,Pass
+12,13,division,0.9230769230769231,0.9230769230769231,Pass
+13,14,division,0.9285714285714286,0.9285714285714286,Pass
+0,0,division,0,Zero Division Error,Fail
+5,,division,0,Attribute Error,Fail
+3,4,division,0.75,0.75,Pass
+Timestamp: Thu Dec 16 02:48:59 2021
+Operation: division

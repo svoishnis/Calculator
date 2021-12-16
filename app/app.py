@@ -9,7 +9,7 @@ from app.controllers.index_controller import IndexController
 from app.controllers.calculator_controller import CalculatorController
 from app.controllers.ooo import OOOController
 from app.controllers.topic import TopicController
-from calc.csvreader.csvfunctions import CsvPostLogic
+from calc.csvfunctions import CsvPostLogic
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
